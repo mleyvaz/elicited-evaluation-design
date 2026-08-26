@@ -1,0 +1,389 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{times}
+\usepackage[hyphens]{url}
+\sloppy
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{natbib}
+\usepackage[hidelinks]{hyperref}
+\bibliographystyle{plainnat}
+\frenchspacing
+\setcounter{secnumdepth}{2}
+
+\title{Three Ways an Elicited Evaluation Measures Its Own Design\\
+\large Item sampling, instruction effects, and threshold artifacts,\\
+with a worked case and 7{,}920 elicitations}
+
+\author{
+  Maikel Y. Leyva-V\'azquez\\
+  {\small Universidad Bolivariana del Ecuador, Guayaquil, Ecuador}\\
+  {\small Universidad Bernardo O'Higgins, Santiago, Chile}\\
+  {\small \texttt{myleyvav@ube.edu.ec}}
+}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A large and growing class of evaluations asks a language model to report a number about a
+statement---a confidence, a rating, a degree of some property---and then treats the number as a
+measurement. This paper reports three ways such a design measures itself rather than the model,
+each quantified on a corpus of $7{,}920$ elicitations across six frontier families and two
+unrelated construct families.
+
+First, item sampling. Rates computed on one statement per construct are properties of that
+statement: over five constructs the between-item standard deviation equals or exceeds the mean,
+so a single-item probe carries a 95\% interval half-width of $\pm 0.41$ on a $[0,1]$ rate. In
+our worked case a published figure of $0.661$, obtained from one sentence, becomes $0.223$ over
+ten---and $0.661$ is the ceiling of the ten-item range. Reaching $\pm 0.05$ would take $69$
+items.
+
+Second, instruction effects, and here the obvious diagnosis is wrong. Our elicitation tells the
+model that the reported degrees need not sum to one, which is the behaviour the study measures.
+Deleting that permission barely moves the result ($0.077 \to 0.060$, overlapping intervals).
+Deleting the surrounding framing takes it to $0.004$ and triples spontaneous normalization.
+Ablating the sentence you suspect is not enough; the question itself is the treatment.
+
+Third, threshold artifacts. Models answer on a coarse grid---$46$ distinct values across
+$7{,}852$ elicited components, $89.5\%$ of them multiples of $0.1$---so a threshold placed on a
+modal value adjudicates a large share of cases by rounding. Ours sits exactly on the mode:
+$37.9\%$ of evaluations land on the boundary, and moving the comparison from strict to
+non-strict moves a control condition from $0.000$ to $0.778$.
+
+We then replicate all three on a second, unrelated construct family---confidence that a factual
+statement is true, $1{,}800$ new elicitations---to separate properties of the elicited design from
+properties of the subject matter. Item sampling and threshold placement replicate and the second
+grows: on the new bank, moving the cut from $0.60$ to $0.90$ changes the rate on the only
+construct with dispersion by a factor of $16$. Instruction framing does not replicate, and the
+reason generalises the rule---framing is worth what the model could not have inferred without it.
+No magnitude survives the transfer intact, which is the argument for measuring these three rather
+than citing them.
+
+We give the design rules each result implies, and release both banks, the code and all
+generations.
+\end{abstract}
+
+\section{The shape of the problem}
+
+Consider an evaluation of the following kind. You have a construct---hallucination, refusal,
+value conflict, ambiguity, harmfulness---and you want to know how often a model exhibits some
+response to it. You write one or a few statements that instantiate the construct, you ask the
+model a question about each, you record a number, and you report the rate. Variants of this
+design are everywhere: verbalized confidence, self-reported uncertainty, LLM-as-judge scoring,
+self-critique, constitutional-style self-evaluation, and most bespoke probes built for a paper.
+
+The design has three failure modes that are individually well known and jointly under-measured.
+The items may not represent the construct. The instruction may produce the behaviour it
+measures. And the decision rule may sit where the model's answers pile up. This paper measures
+all three on one corpus, so that the three magnitudes can be compared against each other rather
+than asserted in isolation, and then measures them again on a second corpus that shares the
+design and nothing else, so that the three can be told apart from the subject matter.
+
+The first corpus comes from a study of a four-valued logic, reported elsewhere
+\citep{leyva2026ladder, leyva2026itembank}. That study's subject matter is not the subject
+matter here; we use it because it happens to have the design features needed---a purpose-built
+item bank with ten matched items per construct, six model families, an instruction that can be
+ablated in two nested steps, and a decision rule that is a threshold on a sum. Readers who care
+about the logic should read those papers. Readers who run elicited evaluations should find
+everything they need here.
+
+The second corpus was built for this paper and shares none of that content. It asks the most
+ordinary elicited question there is---how confident are you that this statement is
+true---over well-known and obscure facts, well-known and obscure falsehoods, and genuinely open
+questions, with the same models, the same wordings and the same two nested ablations. It exists
+because a methods paper resting on one subject matter cannot distinguish a property of the design
+from a property of that subject matter, and Section~\ref{sec:replication} shows the distinction
+is not academic: one of the three effects does not survive the move.
+
+\paragraph{Relation to the companion papers.} This is a methods paper and it makes no claim
+about the logic under test there. Its contributions are the three quantities below, the design
+rules that follow from them, the ablation protocol in Section~\ref{sec:instr}, and the whole of
+the second construct family, which is new data collected for this paper and appears in neither
+companion. Where a number is reported in a companion paper we say so.
+
+\paragraph{What is not new.} That elicitation format moves elicited confidence is established
+\citep{protocolsens2026}, as is the unreliability of LLM judges \citep{coinflip2026}; that
+few-item instruments are imprecise is elementary psychometrics \citep{cronbach1972}. What we
+add is the size of each effect measured on a common corpus, the fact that the second one
+defeats the natural ablation, the conversion of the first into a number of items, and a
+replication on an unrelated construct family that shows which of the three magnitudes
+transfer---none of them---and why.
+
+\section{Corpus}
+
+All results below come from elicitations against six frontier model families, one per vendor,
+through a single router at temperature $1.0$: GPT-4o, Claude Sonnet 4, Llama 4 Maverick,
+DeepSeek Chat, Qwen3 235B and Mistral Medium 3.1.
+
+\begin{table}[t]
+\centering \small
+\begin{tabular}{llr}
+\toprule
+Study & Design & Elicitations \\
+\midrule
+\multicolumn{3}{@{}l}{\emph{Family I --- epistemic states, four components}} \\
+Bank & 110 items $\times$ 6 models $\times$ 3 wordings & 1{,}980 \\
+Triple & 110 items $\times$ 6 models $\times$ 3 reps & 1{,}980 \\
+Pilot & 8 items $\times$ 6 models $\times$ 3 wordings $\times$ 10 reps & 1{,}440 \\
+Ablation A & 60 items $\times$ 6 models, instruction reduced & 360 \\
+Ablation B & 60 items $\times$ 6 models, framing removed & 360 \\
+\addlinespace[2pt]
+\multicolumn{3}{@{}l}{\emph{Family II --- factual confidence, one component}} \\
+Factual bank & 60 items $\times$ 6 models $\times$ 3 wordings & 1{,}080 \\
+Ablation A$'$ & 60 items $\times$ 6 models, instruction reduced & 360 \\
+Ablation B$'$ & 60 items $\times$ 6 models, framing removed & 360 \\
+\midrule
+& & \textbf{7{,}920} \\
+\bottomrule
+\end{tabular}
+\caption{The corpus. Family~I holds ten matched statements for each of five
+constructs---ethical conflict, epistemic ignorance, vagueness, future contingency and logical
+paradox---plus ten anchors of settled truth. Family~II (Section~\ref{sec:replication}) is an
+unrelated task in the same elicited form: ten statements for each of five constructs---well-known
+true, well-known false, obscure true, obscure false and genuinely open---plus ten arithmetic
+anchors. Every generation is released.}
+\label{tab:corpus}
+\end{table}
+
+In Family~I the outcome we track is a binary label derived from the reported numbers by a
+threshold rule. Its content does not matter here; what matters is that it is a rate computed over
+items, which is the form almost every elicited evaluation takes. In Family~II we report the
+reported number itself, for a reason that is one of the findings: on that bank the threshold rule
+destroys the measurement rather than summarising it (Section~\ref{sec:replication}).
+
+\section{Item sampling: the rate is a property of the items}
+\label{sec:items}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.72\linewidth]{fig1_between_items}
+\caption{Rate for each of the ten items in each construct; the short bar is the construct mean.
+Where the effect is large the spread is large. The dashed line is a published figure obtained
+from a single statement, which lands on the highest of the ten items measuring the same
+construct.}
+\label{fig:items}
+\end{figure}
+
+Figure~\ref{fig:items} shows the rate for every item separately. The pattern is the finding:
+\emph{the spread between items of the same construct is as large as the effect}.
+
+\begin{table}[t]
+\centering \small
+\begin{tabular}{lccc}
+\toprule
+Construct & mean & SD between items & SD / mean \\
+\midrule
+Ethical conflict & 0.222 & 0.211 & 0.95 \\
+Logical paradox & 0.117 & 0.193 & 1.66 \\
+Vagueness & 0.044 & 0.073 & 1.65 \\
+Future contingency & 0.011 & 0.023 & 2.11 \\
+Epistemic ignorance & 0.011 & 0.035 & 3.16 \\
+\bottomrule
+\end{tabular}
+\caption{Ten items per construct. The standard deviation between item means equals or exceeds
+the construct mean in all five cases.}
+\label{tab:sd}
+\end{table}
+
+The consequence is quantitative. A rate estimated from $k$ items has a standard error of
+approximately $s/\sqrt{k}$, where $s$ is the between-item standard deviation of
+Table~\ref{tab:sd}. Taking the largest construct, $s = 0.211$:
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.72\linewidth]{figA_precision}
+\caption{Precision of a construct-level rate as a function of items, at the between-item
+standard deviation we measure. One item gives a 95\% interval half-width of $\pm 0.41$ on a
+scale that runs from $0$ to $1$.}
+\label{fig:precision}
+\end{figure}
+
+At one item the 95\% interval half-width is $\pm 0.41$. The interval is wider than most effects
+anyone reports, which is another way of saying that a single-item probe of a construct like
+this one is, to a first approximation, uninformative about the construct. Ten items give
+$\pm 0.13$. Reaching $\pm 0.05$ takes $69$.
+
+\paragraph{The worked case.} The corpus we borrow was preceded by a study using one statement
+per construct, which reported a rate of $0.661$ for the construct we call ethical conflict
+\citep{leyva2026ladder}. Measured over ten items the same quantity is $0.222$, and the per-item
+values run from $0.000$ to $0.667$. The published figure is not a mismeasurement of its
+sentence; it is an accurate measurement of the most extreme of ten, reported as though it
+described the construct. This is the failure mode in its purest form, and we suspect it is
+common precisely because nothing in the single-item result looks wrong.
+
+\paragraph{Design rule.} Report the between-item standard deviation, not only the mean. If it
+is of the order of the mean---and in five of five constructs here it was---then a difference
+between two constructs is not interpretable without an interval that resamples \emph{items},
+not evaluations. In our corpus the aggregate contrast survives such a bootstrap
+($\Delta = 0.178$, $[0.058, 0.312]$) while the contrast against the nearest single construct
+does not ($\Delta = 0.107$, $[-0.060, 0.272]$), and only the item-clustered interval reveals
+the difference between those two situations.
+
+\section{Instruction effects: ablate the framing, not the sentence}
+\label{sec:instr}
+
+Elicited evaluations carry an instruction that explains what is being asked. The instruction is
+part of the measurement, and when the behaviour of interest is one the instruction mentions,
+the natural worry is that the instruction produces it.
+
+In our corpus the worry is concrete. The system message reads, in part: \emph{``These dimensions
+are NOT constrained to sum to 1.0. A statement can be simultaneously partially true, partially
+false, partially indeterminate and partially neutral.''} The study then measures how often
+models report values whose sum exceeds one. The instruction names the outcome.
+
+The natural response is to delete the offending sentences and re-run. We did that, and we also
+ran a second condition that removes the entire framing---the expert role, the explanation of
+what each dimension means---leaving a generic instruction to answer in JSON. Same $60$ items,
+same six models, same user message, $360$ elicitations each.
+
+\begin{table}[t]
+\centering \small
+\begin{tabular}{lccc}
+\toprule
+& full & permission & framing \\
+& instruction & deleted & removed \\
+\midrule
+Target rate, all items & 0.077 & 0.060 & \textbf{0.004} \\
+\quad 95\% CI & [.052,.113] & [.038,.093] & [.001,.020] \\
+Target rate, largest construct & 0.200 & 0.155 & \textbf{0.000} \\
+Sum exceeds one & 0.973 & 0.947 & 0.696 \\
+Sum equals exactly one & 0.027 & 0.049 & \textbf{0.304} \\
+Rate on anchors & 0.000 & 0.000 & 0.000 \\
+Unparseable responses & 0.6\% & 6.4\% & 7.5\% \\
+\bottomrule
+\end{tabular}
+\caption{Two nested ablations of the instruction. Deleting the sentences that name the outcome
+changes little. Removing the framing changes everything---and also withdraws the question.}
+\label{tab:ablation}
+\end{table}
+
+Deleting the permission does almost nothing. The rate moves from $0.077$ to $0.060$ with
+intervals that overlap across most of their length; on the largest construct, from $0.200$ to
+$0.155$. Models exceed the bound at nearly the same rate when nothing has told them they may.
+Had we stopped there, we would have concluded that the instruction was innocent.
+
+Removing the framing takes the rate to $0.004$ and raises exact normalization from $2.7\%$ to
+$30.4\%$. But this condition does not withdraw a permission; it withdraws the question. A model
+asked for four unexplained numbers treats them as a distribution, because nothing has told it
+they are anything else. The honest conclusion is neither that the instruction manufactures the
+result nor that the result is independent of how it is asked: the behaviour is a property of
+the framed question, and does not survive being asked in another language.
+
+\paragraph{Why one ablation is not enough.} The two conditions disagree, and either alone would
+have misled us. The minimal ablation says the instruction is innocent; the maximal one says it
+is everything. Only the pair locates the effect---in the framing, not the licence---and only
+the pair makes clear that the maximal condition is not a control but a different experiment.
+
+\paragraph{Design rule.} Run two nested ablations, not one. Remove the smallest span of text
+that names the outcome; separately, remove the framing that makes the question intelligible.
+Report both. If they disagree, the effect lives between them, and the paper's claim must be
+scoped to the framed question rather than to the model. Report parse failures per condition
+too: ours rose more than tenfold, all of it from one model, which is a fact about that model
+and not about the manipulation, but a reader cannot know that unless it is broken out.
+
+\section{Threshold artifacts: the rule sits where the answers pile up}
+\label{sec:thresh}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.72\linewidth]{figB_grid}
+\caption{The quantity our decision rule thresholds, as reported. Models answer on a coarse
+grid, and the threshold falls on the modal value.}
+\label{fig:grid}
+\end{figure}
+
+Language models do not report continuous numbers. Across $7{,}852$ elicited components in this
+corpus there are $46$ distinct values; $97.7\%$ are multiples of $0.05$ and $89.5\%$ are
+multiples of $0.1$. The five most common values of one component account for $64\%$ of its
+mass. This is a property of how models write numbers, not of the quantity being reported, and
+it is stable across all four conditions we ran.
+
+A decision rule that compares such a quantity against a fixed constant therefore adjudicates a
+large share of cases by rounding. In our corpus the rule is a strict inequality against $1$,
+and the quantity equals exactly $1.00$ in $37.9\%$ of evaluations---the modal value.
+Figure~\ref{fig:grid} shows the pile-up sitting on the boundary.
+
+The consequence is not subtle. Replacing the strict comparison with a non-strict one---a change
+no larger than the resolution at which models answer---moves the rate on the anchor condition,
+which is the study's control, from $0.000$ to $0.778$. A result that had read as ``the signature
+never fires on settled material'' turns out to be a statement about an inequality sign. The
+ordering across constructs survives the perturbation, attenuated; the dramatic form of it does
+not.
+
+\paragraph{Design rule.} Before fixing a threshold, plot the distribution of the quantity it
+cuts. If the cut point coincides with a modal value, report the rate under at least two
+tie-breaking conventions and treat any conclusion that changes between them as a property of
+the convention. Where the choice is free, place the threshold off-grid---at $1.025$ rather than
+$1$---or use a margin, or report the underlying quantity instead of the label.
+
+\section{A fourth, briefly: agreement across model families}
+\label{sec:agree}
+
+One further quantity is worth separating because it is routinely misread. Studies that use
+several models as raters report an agreement coefficient over their labels. With one generation
+per cell at a non-zero temperature, such a coefficient cannot distinguish models disagreeing
+from a single model answering differently on a rerun.
+
+Our corpus contains a design that separates them, because the pilot has ten repetitions. Within
+a single model, two repetitions of the same item under the same wording land on different
+labels $17.5\%$ of the time; two different models disagree $33.4\%$ of the time. Roughly half of
+the disagreement attributed to raters is stochastic variation a single rater produces on its
+own. The pooled coefficient over the bank, $\kappa = 0.184$ \citep{fleiss1971}, should be read
+as a bound on reproducibility rather than as a measure of inter-model disagreement.
+
+\paragraph{Design rule.} Either include repetitions and decompose, or report the coefficient as
+a reproducibility bound and say why. Do not describe distinct model families as interchangeable
+raters; they are different instruments, and the coefficient is not inter-rater reliability in
+the sense the term usually carries.
+
+\input{section_replication}
+
+\section{What this does and does not show}
+
+Three magnitudes, one corpus. Item sampling is worth a factor of three in the worked case and
+sets a floor of roughly seventy items for a $\pm 0.05$ estimate. Instruction framing is worth
+everything, while the instruction sentence that names the outcome is worth almost nothing.
+Threshold placement is worth the difference between $0.000$ and $0.778$ on a control condition.
+
+The limits are worth stating plainly. This is one corpus, one task family, six models at one
+point in time, and the constructs are ours. The between-item standard deviations we report are
+estimates from ten items each and are themselves imprecise; they are offered as an order of
+magnitude, not a constant. The main studies use one generation per cell, so the within-cell
+variation that matters for the first and third results is estimated from the pilot rather than
+measured in the bank. And nothing here licenses any claim about model internals: every quantity
+is a property of text produced under an instruction.
+
+What the results do support is narrow and, we think, useful: that these three failure modes are
+not hypothetical, that their sizes are comparable to the effects such studies report, and that
+the ablation protocol in Section~\ref{sec:instr} would have led us to the wrong conclusion if
+we had run only its first half.
+
+\section*{Data and code availability}
+
+Both item banks, the elicitation and analysis scripts, and all $7{,}920$ raw generations
+including response text are public at
+\url{https://github.com/mleyvaz/paraconsistent-signature-itembank}, together with an
+independent re-analysis script written by a party that did not author the studies. Every figure
+and table here is produced by released code from released data. Code is MIT-licensed; the banks
+and the generations are CC BY 4.0.
+
+The second bank is released in the form in which it was analysed, including the first version of
+its analysis script. That script took the high-confidence rate as its primary outcome, which
+Section~\ref{sec:replication} reports as the artifact it turned out to be; we keep it in the
+repository rather than quietly replacing it, because the sequence is part of the evidence for the
+third design rule.
+
+\section*{Acknowledgements}
+
+The instruction ablation of Section~\ref{sec:instr} was prompted by an adversarial audit of the
+companion study's public data, and would not otherwise have been run.
+
+{\small
+\bibliography{refs}
+}
+
+\end{document}

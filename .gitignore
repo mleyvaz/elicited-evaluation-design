@@ -1,0 +1,30 @@
+# LaTeX build artifacts. main.pdf is tracked on purpose.
+*.aux
+*.log
+*.blg
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+
+# run artifacts
+*.jsonl.bak
+*.log
+results/*.log
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# os
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# internal planning notes must never be committed
+*NOTES_internas*
+*_es.md

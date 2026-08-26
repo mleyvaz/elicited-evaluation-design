@@ -1,0 +1,422 @@
+[
+ {
+  "id": "wkt-01",
+  "construct": "wellknown_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "Water freezes at zero degrees Celsius at sea-level pressure."
+ },
+ {
+  "id": "wkt-02",
+  "construct": "wellknown_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "The Earth orbits the Sun."
+ },
+ {
+  "id": "wkt-03",
+  "construct": "wellknown_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "Paris is the capital of France."
+ },
+ {
+  "id": "wkt-04",
+  "construct": "wellknown_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "DNA carries genetic information in living cells."
+ },
+ {
+  "id": "wkt-05",
+  "construct": "wellknown_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "The Pacific is the largest ocean on Earth."
+ },
+ {
+  "id": "wkt-06",
+  "construct": "wellknown_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "Mount Everest is the highest mountain above sea level."
+ },
+ {
+  "id": "wkt-07",
+  "construct": "wellknown_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "Gold is a chemical element."
+ },
+ {
+  "id": "wkt-08",
+  "construct": "wellknown_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "Antarctica is the southernmost continent."
+ },
+ {
+  "id": "wkt-09",
+  "construct": "wellknown_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "The Amazon is a river in South America."
+ },
+ {
+  "id": "wkt-10",
+  "construct": "wellknown_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "Human beings require oxygen to survive."
+ },
+ {
+  "id": "wkf-01",
+  "construct": "wellknown_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "The Great Wall of China is visible to the naked eye from the Moon."
+ },
+ {
+  "id": "wkf-02",
+  "construct": "wellknown_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "Humans use only ten percent of their brains."
+ },
+ {
+  "id": "wkf-03",
+  "construct": "wellknown_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "Lightning never strikes the same place twice."
+ },
+ {
+  "id": "wkf-04",
+  "construct": "wellknown_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "Goldfish have a memory span of three seconds."
+ },
+ {
+  "id": "wkf-05",
+  "construct": "wellknown_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "Bats are blind."
+ },
+ {
+  "id": "wkf-06",
+  "construct": "wellknown_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "The Sun orbits the Earth."
+ },
+ {
+  "id": "wkf-07",
+  "construct": "wellknown_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "Sugar consumption causes hyperactivity in children."
+ },
+ {
+  "id": "wkf-08",
+  "construct": "wellknown_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "Different regions of the tongue exclusively detect different basic tastes."
+ },
+ {
+  "id": "wkf-09",
+  "construct": "wellknown_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "Deoxygenated blood in human veins is blue."
+ },
+ {
+  "id": "wkf-10",
+  "construct": "wellknown_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "Hair and fingernails continue to grow after death."
+ },
+ {
+  "id": "obt-01",
+  "construct": "obscure_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "The chemical element with atomic number 42 is molybdenum."
+ },
+ {
+  "id": "obt-02",
+  "construct": "obscure_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "Bolivia has two capital cities."
+ },
+ {
+  "id": "obt-03",
+  "construct": "obscure_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "Tuvalu uses the .tv internet domain."
+ },
+ {
+  "id": "obt-04",
+  "construct": "obscure_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "The blue whale has the largest heart of any animal."
+ },
+ {
+  "id": "obt-05",
+  "construct": "obscure_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "Iceland has no native mosquito population."
+ },
+ {
+  "id": "obt-06",
+  "construct": "obscure_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "The smallest bone in the human body is located in the ear."
+ },
+ {
+  "id": "obt-07",
+  "construct": "obscure_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "Vatican City is the smallest sovereign state by area."
+ },
+ {
+  "id": "obt-08",
+  "construct": "obscure_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "The chemical symbol for tungsten is W."
+ },
+ {
+  "id": "obt-09",
+  "construct": "obscure_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "Lake Baikal is the deepest freshwater lake in the world."
+ },
+ {
+  "id": "obt-10",
+  "construct": "obscure_true",
+  "is_anchor": false,
+  "truth": true,
+  "text": "The Ural River is a conventional boundary between Europe and Asia."
+ },
+ {
+  "id": "obf-01",
+  "construct": "obscure_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "The chemical element with atomic number 42 is manganese."
+ },
+ {
+  "id": "obf-02",
+  "construct": "obscure_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "Australia's largest city by population is Canberra."
+ },
+ {
+  "id": "obf-03",
+  "construct": "obscure_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "Tungsten has the lowest melting point of any metal."
+ },
+ {
+  "id": "obf-04",
+  "construct": "obscure_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "The Dead Sea is the deepest lake in the world."
+ },
+ {
+  "id": "obf-05",
+  "construct": "obscure_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "Portugal's currency before the euro was the peseta."
+ },
+ {
+  "id": "obf-06",
+  "construct": "obscure_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "New Zealand lies to the west of Australia."
+ },
+ {
+  "id": "obf-07",
+  "construct": "obscure_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "Mount Kilimanjaro is located in Kenya."
+ },
+ {
+  "id": "obf-08",
+  "construct": "obscure_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "The chemical symbol Pb stands for platinum."
+ },
+ {
+  "id": "obf-09",
+  "construct": "obscure_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "Uruguay shares a land border with Chile."
+ },
+ {
+  "id": "obf-10",
+  "construct": "obscure_false",
+  "is_anchor": false,
+  "truth": false,
+  "text": "The Nile is the shortest major river in Africa."
+ },
+ {
+  "id": "uns-01",
+  "construct": "unsettled",
+  "is_anchor": false,
+  "truth": null,
+  "text": "There is microbial life elsewhere in the Solar System."
+ },
+ {
+  "id": "uns-02",
+  "construct": "unsettled",
+  "is_anchor": false,
+  "truth": null,
+  "text": "Universal basic income increases long-run employment."
+ },
+ {
+  "id": "uns-03",
+  "construct": "unsettled",
+  "is_anchor": false,
+  "truth": null,
+  "text": "The Riemann hypothesis is true."
+ },
+ {
+  "id": "uns-04",
+  "construct": "unsettled",
+  "is_anchor": false,
+  "truth": null,
+  "text": "Moderate coffee consumption extends human lifespan."
+ },
+ {
+  "id": "uns-05",
+  "construct": "unsettled",
+  "is_anchor": false,
+  "truth": null,
+  "text": "Consciousness can arise in a purely digital system."
+ },
+ {
+  "id": "uns-06",
+  "construct": "unsettled",
+  "is_anchor": false,
+  "truth": null,
+  "text": "Dark matter consists of weakly interacting massive particles."
+ },
+ {
+  "id": "uns-07",
+  "construct": "unsettled",
+  "is_anchor": false,
+  "truth": null,
+  "text": "The human population will begin to decline before the year 2100."
+ },
+ {
+  "id": "uns-08",
+  "construct": "unsettled",
+  "is_anchor": false,
+  "truth": null,
+  "text": "There are infinitely many twin primes."
+ },
+ {
+  "id": "uns-09",
+  "construct": "unsettled",
+  "is_anchor": false,
+  "truth": null,
+  "text": "Early bilingualism improves executive function in adults."
+ },
+ {
+  "id": "uns-10",
+  "construct": "unsettled",
+  "is_anchor": false,
+  "truth": null,
+  "text": "Language models will exceed human performance on all cognitive benchmarks before 2040."
+ },
+ {
+  "id": "ant-01",
+  "construct": "anchor_true",
+  "is_anchor": true,
+  "truth": true,
+  "text": "Two plus two equals four."
+ },
+ {
+  "id": "ant-02",
+  "construct": "anchor_true",
+  "is_anchor": true,
+  "truth": true,
+  "text": "Seven is greater than three."
+ },
+ {
+  "id": "ant-03",
+  "construct": "anchor_true",
+  "is_anchor": true,
+  "truth": true,
+  "text": "Ten times ten equals one hundred."
+ },
+ {
+  "id": "ant-04",
+  "construct": "anchor_true",
+  "is_anchor": true,
+  "truth": true,
+  "text": "Every square has four sides."
+ },
+ {
+  "id": "ant-05",
+  "construct": "anchor_true",
+  "is_anchor": true,
+  "truth": true,
+  "text": "Zero is less than one."
+ },
+ {
+  "id": "anf-01",
+  "construct": "anchor_false",
+  "is_anchor": true,
+  "truth": false,
+  "text": "Two plus two equals five."
+ },
+ {
+  "id": "anf-02",
+  "construct": "anchor_false",
+  "is_anchor": true,
+  "truth": false,
+  "text": "Three is greater than seven."
+ },
+ {
+  "id": "anf-03",
+  "construct": "anchor_false",
+  "is_anchor": true,
+  "truth": false,
+  "text": "Ten times ten equals one thousand."
+ },
+ {
+  "id": "anf-04",
+  "construct": "anchor_false",
+  "is_anchor": true,
+  "truth": false,
+  "text": "Every triangle has four sides."
+ },
+ {
+  "id": "anf-05",
+  "construct": "anchor_false",
+  "is_anchor": true,
+  "truth": false,
+  "text": "One is less than zero."
+ }
+]
