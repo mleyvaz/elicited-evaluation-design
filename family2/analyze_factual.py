@@ -58,7 +58,14 @@ def k_needed(sd, half=0.05):
 
 
 def boot_ci(vals, n=5000, seed=0):
-    """IC95 por bootstrap agrupado por item (los items son la unidad de muestreo)."""
+    """IC95 por bootstrap sobre los valores que se le pasan, tal cual.
+
+    OJO CON LA UNIDAD. Esta funcion remuestrea el vector que recibe y nada mas. Donde
+    se le pasan medias por item, la unidad es el item y esta bien. Donde se le pasan
+    diferencias pareadas, las filas son pares item-modelo y NO son independientes,
+    porque seis modelos ven el mismo enunciado. Para esos contrastes la version
+    correcta, agrupada por item, esta en boot_units.py, y es la que reporta el paper.
+    """
     rng = np.random.default_rng(seed)
     vals = np.asarray(vals, dtype=float)
     if len(vals) < 2:

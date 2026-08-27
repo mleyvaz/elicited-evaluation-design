@@ -107,7 +107,9 @@ def main():
                  textcoords="offset points", xytext=(0, -13), fontsize=7.2, color=INK2)
     ax2.annotate("the two false constructs", (0.545, 0.0),
                  textcoords="offset points", xytext=(0, 8), fontsize=7.2, color=INK2)
-    ax2.annotate("steps are the response grid:\n83% of answers\nare multiples of 0.10",
+    # se calcula del dato: cableado a mano quedo desfasado cuando se completo la corrida
+    pct10 = 100 * np.mean(np.abs(d["confidence"] * 10 - np.round(d["confidence"] * 10)) < 1e-9)
+    ax2.annotate(f"steps are the response grid:\n{pct10:.0f}% of the answers shown\nare multiples of 0.10",
                  (0.985, 0.56), xycoords="axes fraction",
                  fontsize=6.9, color=MUTED, ha="right", va="top", style="italic",
                  linespacing=1.45)

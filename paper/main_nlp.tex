@@ -167,7 +167,7 @@ Epistemic ignorance & 0.011 & 0.035 & 3.16 \\
 \bottomrule
 \end{tabular}
 \caption{Ten items per construct. The standard deviation between item means equals or exceeds
-the construct mean in all five cases.}
+the construct mean in four of the five cases, and is of the same order in the fifth.}
 \label{tab:sd}
 \end{table}
 
@@ -229,7 +229,7 @@ same six models, same user message, $360$ elicitations each.
 & full & permission & framing \\
 & instruction & deleted & removed \\
 \midrule
-Target rate, all items & 0.077 & 0.060 & \textbf{0.004} \\
+Target rate, contested items & 0.077 & 0.060 & \textbf{0.004} \\
 \quad 95\% CI & [.052,.113] & [.038,.093] & [.001,.020] \\
 Target rate, largest construct & 0.200 & 0.155 & \textbf{0.000} \\
 Sum exceeds one & 0.973 & 0.947 & 0.696 \\
@@ -315,12 +315,15 @@ from a single model answering differently on a rerun.
 
 Our corpus contains a design that separates them, because the pilot has ten repetitions. Over
 the five contested statements, two repetitions of the same item by the same model under the same
-wording land on different labels $17.5\%$ of the time ($n = 4{,}032$ pairs); two different models
-answering the same item, wording and repetition disagree $32.8\%$ of the time ($n = 2{,}240$
-pairs). Roughly half of the disagreement attributed to raters is stochastic variation a single
-rater produces on its own. Both rates exclude the three tautological controls, where the label
-is almost never in dispute and including them halves both figures without changing their
-ratio. The pooled coefficient over the bank, $\kappa = 0.184$ \citep{fleiss1971}, should be read
+wording land on different labels $17.5\%$ of the time ($n = 4{,}032$ pairs, 95\% CI
+$[9.3,\,25.1]$); two different models answering the same item, wording and repetition disagree
+$32.8\%$ of the time ($n = 2{,}240$ pairs, 95\% CI $[13.3,\,52.5]$). Roughly half of the
+disagreement attributed to raters is stochastic variation a single rater produces on its own,
+and that ratio is the stable part: it is $0.53$ over the contested statements and $0.52$ with
+the three tautological controls added back, although adding them halves both rates. The
+intervals are wide because the pilot has five contested statements, which is the first result
+of this paper applied to itself; the decomposition is reproduced by
+\texttt{family1/analyze\_pilot\_agreement.py}. The pooled coefficient over the bank, $\kappa = 0.184$ \citep{fleiss1971}, should be read
 as a bound on reproducibility rather than as a measure of inter-model disagreement.
 
 \paragraph{Design rule.} Either include repetitions and decompose, or report the coefficient as
@@ -382,10 +385,14 @@ not applicable.
 
 \paragraph{Use of language models.} Language models are the object of study here rather than an
 aid to writing: the corpus consists of their outputs, collected between 24 and 26 August 2026
-through a single router at temperature $1.0$. Vendors and model versions are named in
-Section~\ref{sec:corpus} and recorded with every generation in the released files, because these
-results are properties of specific model versions at a specific date and should not be assumed
-stable across releases.
+through a single router at temperature $1.0$. Vendors and model families are named in
+Section~\ref{sec:corpus}, and every released generation records the model family that produced
+it. Exact provider version strings are recorded only for the pilot file; the router resolved
+them at call time and the remaining files carry the family label rather than the resolved
+version. Collection dates are given here and not per record. These results are properties of
+specific model versions at a specific date and should not be assumed stable across releases, so
+this is a limitation of the release rather than a detail: an exact re-run of the same versions
+is not possible from what we published.
 
 \paragraph{Competing interests.} The Family~I corpus was collected for two companion studies
 co-authored by the present author, and one published figure re-analysed here ($0.661$) comes

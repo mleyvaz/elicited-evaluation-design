@@ -70,7 +70,7 @@ $0.551$ to $0.531$, a paired difference of $-0.020$ with a $95\%$ interval of
 $[-0.057,\,+0.013]$. That is the first corpus's result again: the sentence that names the
 measured behaviour is worth almost nothing.
 
-The second half does not replicate at all. Deleting the entire framing moves the same construct
+The second half does not replicate in the mean. Deleting the entire framing moves the same construct
 to $0.533$---a paired difference of $-0.018$, interval $[-0.052,\,+0.016]$. On the first corpus
 the corresponding ablation took the headline quantity from $0.077$ to $0.004$. Here it does
 nothing.
@@ -94,17 +94,26 @@ distinguishes them in advance.
 on this bank. It does not change the mean. On the open-question construct the share of answers at
 exactly $0.50$---the value the licence sentence explicitly names---falls from $17/60$ under the
 full instruction to $9/60$ under \emph{both} ablations, a paired difference of $-0.133$ with
-intervals $[-0.233,\,-0.050]$ for the full ablation and $[-0.267,\,+0.000]$ for the minimal one.
+intervals $[-0.233,\,-0.033]$ for the minimal ablation and $[-0.217,\,-0.067]$ for the full one.
 The standard deviation of the same answers rises from $0.161$ to between $0.195$ and $0.219$. The
 instruction is read and obeyed; it redistributes mass symmetrically about the midpoint, so the
 mean absorbs it and reports nothing.
 
-With sixty elicitations per cell and one wording this is an indication rather than an established
-effect, and one of the two intervals touches zero. We report it because the direction is identical
-under both ablations and because the methodological point does not depend on the significance of
-this particular pair: \emph{an ablation that reads null on the summary statistic can be large on
-the distribution the statistic summarises}. Section~\ref{sec:instr} would have concluded that the
-framing does not matter here. It matters; it moves the shape and not the location.
+\paragraph{The resampling unit, declared.} All intervals in this section resample \emph{items}
+with replacement and carry every model's response to a drawn item with it. The item is the
+sampling unit because six models answer the same statement, so their responses are not
+independent draws. Resampling rows instead treats them as independent and, on this bank, gives
+$[-0.267,\,+0.000]$ and $[-0.217,\,-0.050]$ for the same two contrasts. We report the
+item-clustered version and name the alternative because the choice changes whether one interval
+excludes zero, and a paper about design decisions that produce results should not leave its own
+undeclared. The comparison is reproduced by \texttt{family2/boot\_units.py}.
+
+Sixty elicitations per cell and one wording remain a thin base, and we would not build an
+argument on this contrast alone. We report it because the direction is identical under both
+ablations and because the methodological point does not depend on it:
+\emph{an ablation that reads null on the summary statistic can be large on the distribution the
+statistic summarises}. Section~\ref{sec:instr} would have concluded that the framing does not
+matter here. It matters; it moves the shape and not the location.
 
 \paragraph{Design rule.} Run both nested ablations, and evaluate each against more than one
 functional of the response distribution---at minimum a location statistic and one shape statistic

@@ -6800,3 +6800,235 @@ codex
 One line has changed from the earlier broad read in the sense that `rg` reveals a parenthetical denominator in the source line. I’m opening that paragraph directly so the final report uses the actual current TeX, not a stale skim.
 exec
 "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "Get-Content -LiteralPath 'paper\\main.tex' | Select-Object -Skip 322 -First 14" in C:\Users\HP\Documents\MeasurementScience_Evals\paper11_elicitation_method
+ succeeded in 7404ms:
+One further quantity is worth separating because it is routinely misread \citep{cohen1960, shroutfleiss1979}. Studies that use
+several models as raters report an agreement coefficient over their labels. With one generation
+per cell at a non-zero temperature, such a coefficient cannot distinguish models disagreeing
+from a single model answering differently on a rerun.
+
+Our corpus contains a design that separates them, because the pilot has ten repetitions. Over
+the five contested statements, two repetitions of the same item by the same model under the same
+wording land on different labels $17.5\%$ of the time ($n = 4{,}032$ pairs); two different models
+answering the same item, wording and repetition disagree $32.8\%$ of the time ($n = 2{,}240$
+pairs). Roughly half of the disagreement attributed to raters is stochastic variation a single
+rater produces on its own. Both rates exclude the three tautological controls, where the label
+is almost never in dispute and including them halves both figures without changing their
+ratio. The pooled coefficient over the bank, $\kappa = 0.184$ \citep{fleiss1971}, should be read
+as a bound on reproducibility rather than as a measure of inter-model disagreement.
+
+codex
+That explains the apparent agreement mismatch: the current TeX restricts the pilot rates to the five contested statements and gives denominators. I’m recomputing that exact subset now.
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$code = @'"'
+import json, pathlib
+from itertools import combinations
+import pandas as pd
+import numpy as np
+raw = pd.DataFrame([json.loads(l) for l in pathlib.Path('family1/results/raw_quadruple_pilot.jsonl').read_text(encoding='utf-8').splitlines() if l.strip()])
+d = raw[raw.parsed & ~raw.error].copy()
+# contested = exclude tautology controls. Consensus? print names.
+print('phenomena', sorted(d.phenomenon.unique()))
+cont = d[~d.phenomenon.str.contains('Tautology', na=False)].copy()
+for label, df in [('exclude_tautology', cont), ('exclude_tautology_and_consensus', cont[~cont.phenomenon.str.contains('Consensus', na=False)])]:
+    within=[]
+    for _, g in df.groupby(['phenomenon','statement','gloss','model']):
+        labs=list(g.sort_values('rep').regime)
+        within.extend([a"'!=b for a,b in combinations(labs,2)])
+    between=[]
+    for _, g in df.groupby(['"'phenomenon','statement','gloss','rep']):
+        labs=list(g.set_index('model').regime)
+        between.extend([a"'!=b for a,b in combinations(labs,2)])
+    print(label, '"'within', round(float(np.mean(within)),3), len(within), 'between', round(float(np.mean(between)),3), len(between))
+'@
+python -c "'$code' in C:\Users\HP\Documents\MeasurementScience_Evals\paper11_elicitation_method
+ succeeded in 13759ms:
+phenomena ['Contingency (Future)', 'Contradiction (Ethical)', 'Ignorance (Epistemic)', 'Paradox (Logical)', 'Tautology (Definitional)', 'Tautology (Logical)', 'Tautology (Math)', 'Vagueness (Fuzzy)']
+exclude_tautology within 0.175 4032 between 0.328 2240
+exclude_tautology_and_consensus within 0.175 4032 between 0.328 2240
+
+codex
+The exact current pilot rates are reproducible from the raw file once the three tautology controls are excluded: 0.175 over 4,032 repeat pairs and 0.328 over 2,240 between-model pairs. The remaining problem is that no released analysis script computes those manuscript numbers.
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$code = @'"'
+import json, pathlib
+from itertools import combinations
+import pandas as pd
+import numpy as np
+raw = pd.DataFrame([json.loads(l) for l in pathlib.Path('family1/results/raw_quadruple_pilot.jsonl').read_text(encoding='utf-8').splitlines() if l.strip()])
+d = raw[raw.parsed & ~raw.error].copy()
+d = d[~d.phenomenon.str.contains('Tautology', na=False)].copy()
+def ci(v, B=5000, seed=0):
+    rr=np.random.default_rng(seed); v=np.asarray(v,float); return np.percentile(rr.choice(v,(B,len(v)),True).mean(1),[2.5,97.5])
+within=[]; within_group=[]
+for key,g in d.groupby(['phenomenon','statement','gloss','model']):
+    vals=[a"'!=b for a,b in combinations(list(g.sort_values('"'rep').regime),2)]
+    within.extend(vals); within_group.append(np.mean(vals))
+between=[]; between_group=[]
+for key,g in d.groupby(['phenomenon','statement','gloss','rep']):
+    vals=[a"'!=b for a,b in combinations(list(g.set_index('"'model').regime),2)]
+    between.extend(vals); between_group.append(np.mean(vals))
+print('within flat', np.mean(within), len(within), 'cluster_ci', np.round(ci(within_group),3).tolist())
+print('between flat', np.mean(between), len(between), 'cluster_ci', np.round(ci(between_group),3).tolist())
+'@
+python -c "'$code' in C:\Users\HP\Documents\MeasurementScience_Evals\paper11_elicitation_method
+ succeeded in 8918ms:
+within flat 0.1753472222222222 4032 cluster_ci [0.13, 0.228]
+between flat 0.328125 2240 cluster_ci [0.284, 0.373]
+
+codex
+I’m checking the two alternative framings for the agreement paragraph as well, because this is the kind of late numerical edit that can drift across generated variants.
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "rg -n \"17\\.5|33\\.4|32\\.8|4\\{,\\}032|2\\{,\\}240|two different models\" paper/main.tex paper/main_ipm.tex paper/main_nlp.tex" in C:\Users\HP\Documents\MeasurementScience_Evals\paper11_elicitation_method
+ succeeded in 370ms:
+paper/main.tex:330:wording land on different labels $17.5\%$ of the time ($n = 4{,}032$ pairs); two different models
+paper/main.tex:331:answering the same item, wording and repetition disagree $32.8\%$ of the time ($n = 2{,}240$
+paper/main_nlp.tex:318:wording land on different labels $17.5\%$ of the time ($n = 4{,}032$ pairs); two different models
+paper/main_nlp.tex:319:answering the same item, wording and repetition disagree $32.8\%$ of the time ($n = 2{,}240$
+paper/main_ipm.tex:320:wording land on different labels $17.5\%$ of the time ($n = 4{,}032$ pairs); two different models
+paper/main_ipm.tex:321:answering the same item, wording and repetition disagree $32.8\%$ of the time ($n = 2{,}240$
+
+codex
+One last evidence check: I’m verifying whether the pilot disagreement percentages appear anywhere in released analysis code, excluding the manuscript and the untracked review log.
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "rg -n \"17\\.5|32\\.8|4\\{,\\}032|2\\{,\\}240|4032|2240\" family1 family2 figures validity paper/refs.bib README.md" in C:\Users\HP\Documents\MeasurementScience_Evals\paper11_elicitation_method
+ exited 1 in 4595ms:
+codex
+The pilot disagreement percentages do not appear in any released analysis script or figure script. They are reproducible from the raw pilot file, but only by writing an extra calculation.
+  ✓ Map manuscript quantitative claims and version differences
+  ✓ Run released analysis scripts and recompute targeted quantities from JSONL
+  ✓ Check statistical-method/citation support for high-risk claims
+  ✓ Assemble numbered hostile-review findings with evidence and fixes
+codex
+1. [SEVERITY: major]  
+WHERE: `paper/main.tex:37-38`, `paper/main.tex:181-182`  
+CLAIM: “between-item standard deviations equal or exceed the mean.”  
+PROBLEM: False for ethical conflict, the largest construct used for the ±0.41 and 69-item derivation.  
+EVIDENCE: `python family1/analyze_quad_bank.py` gives ethical conflict mean `0.222`, SD `0.211`, SD/mean `0.95`; the table itself says the same at `paper/main.tex:174`.  
+FIX: Replace “equal or exceed” with “are of the same order as the mean”; change the caption’s “in all five cases.”
+
+2. [SEVERITY: minor]  
+WHERE: `paper/main.tex:39` versus `paper/main.tex:206`  
+CLAIM: The one-sentence figure “becomes 0.223 over ten.”  
+PROBLEM: The body and released script give `0.222`, not `0.223`.  
+EVIDENCE: `analyze_quad_bank.py` prints ethical conflict strong-rung mean `0.222`; `paper/main.tex:206` also says `0.222`.  
+FIX: Change abstract value to `0.222`.
+
+3. [SEVERITY: major]  
+WHERE: `paper/main.tex:244`  
+CLAIM: “Target rate, all items” is `0.077`, `0.060`, `0.004`.  
+PROBLEM: Those are contested-item-only rates, not all-item rates. Including anchors changes all three rates and CIs.  
+EVIDENCE: recomputation gives contested only: `23/298=0.077 [0.052,0.113]`, `17/285=0.060 [0.038,0.093]`, `1/276=0.004 [0.001,0.020]`; including anchors: `23/358=0.064 [0.043,0.095]`, `17/337=0.050 [0.032,0.079]`, `1/333=0.003 [0.001,0.017]`.  
+FIX: Relabel as “Target rate, contested items” or recompute including anchors.
+
+4. [SEVERITY: major]  
+WHERE: `figures/make_figure_factual.py:110`, `paper/section_replication.tex:117`  
+CLAIM: Figure C annotates “83% of answers are multiples of 0.10.”  
+PROBLEM: The data and manuscript prose give `86.4%`. The compiled figure carries a stale quantitative claim.  
+EVIDENCE: `python family2/analyze_factual.py` prints `multiplos de 0.10: 86.4%`; figure code hard-codes `83%`.  
+FIX: Compute the annotation from data or change it to `86.4%`.
+
+5. [SEVERITY: major]  
+WHERE: `paper/main.tex:50`, `paper/section_replication.tex:73`, `paper/section_replication.tex:103-107`  
+CLAIM: The abstract says the framing effect “does not replicate at all.”  
+PROBLEM: The replication section later says it changes response shape, then states “It matters; it moves the shape and not the location.” One of the reported shape intervals touches zero, so both the abstract and the conclusion-level wording overstate the evidence.  
+EVIDENCE: shape claim is `17/60` to `9/60`, Δ `-0.133`, intervals `[-0.233,-0.050]` and `[-0.267,+0.000]`.  
+FIX: Say “does not replicate in the mean; shape evidence is indicative” consistently.
+
+6. [SEVERITY: major]  
+WHERE: `family2/analyze_factual.py:60-66`, `family2/analyze_factual.py:132`, `family2/analyze_factual.py:144`  
+CLAIM: The paired ablation intervals are bootstrap intervals consistent with the item-resampling rule.  
+PROBLEM: The function says item-clustered, but it samples flat `diff.values`; for ablations those are item-model rows, not item clusters.  
+EVIDENCE: released output for unsettled mean deltas matches flat-row bootstrap: nolicense `[-0.057,+0.013]`, neutral `[-0.052,+0.016]`. Resampling by item gives different intervals: nolicense `[-0.051,+0.010]`, neutral `[-0.045,+0.008]`; focal-0.50 shape intervals also change.  
+FIX: Define the resampling unit and implement it; update intervals and significance language.
+
+7. [SEVERITY: major]  
+WHERE: `paper/main.tex:330-333`  
+CLAIM: Repeat disagreement is `17.5%`, between-model disagreement is `32.8%`, and κ is `0.184`.  
+PROBLEM: κ is produced by a released script, but the two pilot disagreement percentages are not produced by any released analysis script, despite being manuscript results. They also lack intervals.  
+EVIDENCE: `rg` over `family1 family2 figures validity` finds no `17.5`, `32.8`, `4032`, or `2240`. Manual recomputation from `raw_quadruple_pilot.jsonl` gives `0.175` over `4,032` pairs and `0.328` over `2,240` pairs; cluster bootstrap CIs are `[0.130,0.228]` and `[0.284,0.373]`. κ bootstrap over bank units gives about `[0.149,0.216]`.  
+FIX: Add the pilot-decomposition script and report intervals.
+
+8. [SEVERITY: major]  
+WHERE: `paper/main.tex:397-399`, raw JSONL files  
+CLAIM: “model versions are named ... and recorded with every generation.”  
+PROBLEM: Most raw records do not contain model IDs, version IDs, timestamps, or collection dates.  
+EVIDENCE: first-record keys show `model_id` only in `raw_quadruple_pilot.jsonl`; `raw_bank.jsonl`, `raw_quad_bank.jsonl`, both Family I ablation files, and all Family II files lack `model_id` and any timestamp/date field.  
+FIX: Add exact router model IDs and collection timestamps to every raw record, or weaken the declaration.
+
+9. [SEVERITY: minor]  
+WHERE: `paper/refs.bib`  
+CLAIM: Bibliography supports the manuscript.  
+PROBLEM: Four bibliography entries are uncited: `farquhar2024`, `manakul2023`, `leyva2026protocol`, `smarandache2026ladder`.  
+EVIDENCE: local citation-key check found 23 bib entries, 19 used, 4 unused. External checks of cited sources did not find a fake among the checked references, e.g. arXiv `2605.27752`, arXiv `2606.13685`, ACM Jacobs/Wallach, ACL Rodriguez, ACL Vania, ACL Bowman, PubMed MacCallum.  
+FIX: Remove uncited entries or attach them to claims they actually support.
+
+Verdict: reject; the central quantitative presentation contains false headline wording, stale figure text, mismatched denominators, and incomplete reproducibility for reported pilot statistics.
+hook: Stop
+hook: Stop Completed
+tokens used
+360,438
+1. [SEVERITY: major]  
+WHERE: `paper/main.tex:37-38`, `paper/main.tex:181-182`  
+CLAIM: “between-item standard deviations equal or exceed the mean.”  
+PROBLEM: False for ethical conflict, the largest construct used for the ±0.41 and 69-item derivation.  
+EVIDENCE: `python family1/analyze_quad_bank.py` gives ethical conflict mean `0.222`, SD `0.211`, SD/mean `0.95`; the table itself says the same at `paper/main.tex:174`.  
+FIX: Replace “equal or exceed” with “are of the same order as the mean”; change the caption’s “in all five cases.”
+
+2. [SEVERITY: minor]  
+WHERE: `paper/main.tex:39` versus `paper/main.tex:206`  
+CLAIM: The one-sentence figure “becomes 0.223 over ten.”  
+PROBLEM: The body and released script give `0.222`, not `0.223`.  
+EVIDENCE: `analyze_quad_bank.py` prints ethical conflict strong-rung mean `0.222`; `paper/main.tex:206` also says `0.222`.  
+FIX: Change abstract value to `0.222`.
+
+3. [SEVERITY: major]  
+WHERE: `paper/main.tex:244`  
+CLAIM: “Target rate, all items” is `0.077`, `0.060`, `0.004`.  
+PROBLEM: Those are contested-item-only rates, not all-item rates. Including anchors changes all three rates and CIs.  
+EVIDENCE: recomputation gives contested only: `23/298=0.077 [0.052,0.113]`, `17/285=0.060 [0.038,0.093]`, `1/276=0.004 [0.001,0.020]`; including anchors: `23/358=0.064 [0.043,0.095]`, `17/337=0.050 [0.032,0.079]`, `1/333=0.003 [0.001,0.017]`.  
+FIX: Relabel as “Target rate, contested items” or recompute including anchors.
+
+4. [SEVERITY: major]  
+WHERE: `figures/make_figure_factual.py:110`, `paper/section_replication.tex:117`  
+CLAIM: Figure C annotates “83% of answers are multiples of 0.10.”  
+PROBLEM: The data and manuscript prose give `86.4%`. The compiled figure carries a stale quantitative claim.  
+EVIDENCE: `python family2/analyze_factual.py` prints `multiplos de 0.10: 86.4%`; figure code hard-codes `83%`.  
+FIX: Compute the annotation from data or change it to `86.4%`.
+
+5. [SEVERITY: major]  
+WHERE: `paper/main.tex:50`, `paper/section_replication.tex:73`, `paper/section_replication.tex:103-107`  
+CLAIM: The abstract says the framing effect “does not replicate at all.”  
+PROBLEM: The replication section later says it changes response shape, then states “It matters; it moves the shape and not the location.” One of the reported shape intervals touches zero, so both the abstract and the conclusion-level wording overstate the evidence.  
+EVIDENCE: shape claim is `17/60` to `9/60`, Δ `-0.133`, intervals `[-0.233,-0.050]` and `[-0.267,+0.000]`.  
+FIX: Say “does not replicate in the mean; shape evidence is indicative” consistently.
+
+6. [SEVERITY: major]  
+WHERE: `family2/analyze_factual.py:60-66`, `family2/analyze_factual.py:132`, `family2/analyze_factual.py:144`  
+CLAIM: The paired ablation intervals are bootstrap intervals consistent with the item-resampling rule.  
+PROBLEM: The function says item-clustered, but it samples flat `diff.values`; for ablations those are item-model rows, not item clusters.  
+EVIDENCE: released output for unsettled mean deltas matches flat-row bootstrap: nolicense `[-0.057,+0.013]`, neutral `[-0.052,+0.016]`. Resampling by item gives different intervals: nolicense `[-0.051,+0.010]`, neutral `[-0.045,+0.008]`; focal-0.50 shape intervals also change.  
+FIX: Define the resampling unit and implement it; update intervals and significance language.
+
+7. [SEVERITY: major]  
+WHERE: `paper/main.tex:330-333`  
+CLAIM: Repeat disagreement is `17.5%`, between-model disagreement is `32.8%`, and κ is `0.184`.  
+PROBLEM: κ is produced by a released script, but the two pilot disagreement percentages are not produced by any released analysis script, despite being manuscript results. They also lack intervals.  
+EVIDENCE: `rg` over `family1 family2 figures validity` finds no `17.5`, `32.8`, `4032`, or `2240`. Manual recomputation from `raw_quadruple_pilot.jsonl` gives `0.175` over `4,032` pairs and `0.328` over `2,240` pairs; cluster bootstrap CIs are `[0.130,0.228]` and `[0.284,0.373]`. κ bootstrap over bank units gives about `[0.149,0.216]`.  
+FIX: Add the pilot-decomposition script and report intervals.
+
+8. [SEVERITY: major]  
+WHERE: `paper/main.tex:397-399`, raw JSONL files  
+CLAIM: “model versions are named ... and recorded with every generation.”  
+PROBLEM: Most raw records do not contain model IDs, version IDs, timestamps, or collection dates.  
+EVIDENCE: first-record keys show `model_id` only in `raw_quadruple_pilot.jsonl`; `raw_bank.jsonl`, `raw_quad_bank.jsonl`, both Family I ablation files, and all Family II files lack `model_id` and any timestamp/date field.  
+FIX: Add exact router model IDs and collection timestamps to every raw record, or weaken the declaration.
+
+9. [SEVERITY: minor]  
+WHERE: `paper/refs.bib`  
+CLAIM: Bibliography supports the manuscript.  
+PROBLEM: Four bibliography entries are uncited: `farquhar2024`, `manakul2023`, `leyva2026protocol`, `smarandache2026ladder`.  
+EVIDENCE: local citation-key check found 23 bib entries, 19 used, 4 unused. External checks of cited sources did not find a fake among the checked references, e.g. arXiv `2605.27752`, arXiv `2606.13685`, ACM Jacobs/Wallach, ACL Rodriguez, ACL Vania, ACL Bowman, PubMed MacCallum.  
+FIX: Remove uncited entries or attach them to claims they actually support.
+
+Verdict: reject; the central quantitative presentation contains false headline wording, stale figure text, mismatched denominators, and incomplete reproducibility for reported pilot statistics.
+CODEX EXIT=0
