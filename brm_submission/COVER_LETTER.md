@@ -53,6 +53,7 @@ consideration elsewhere, and all listed material is original to it.
 Thank you for your consideration.
 
 Maikel Y. Leyva-Vázquez
-Universidad Bolivariana del Ecuador, Guayaquil, Ecuador
 Universidad Bernardo O'Higgins, Santiago, Chile
+Universidad Bolivariana del Ecuador, Guayaquil, Ecuador
+Universidad de Guayaquil, Guayaquil, Ecuador
 myleyvav@ube.edu.ec · ORCID 0000-0001-7911-5879

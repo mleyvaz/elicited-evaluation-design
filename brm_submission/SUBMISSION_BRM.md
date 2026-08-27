@@ -10,7 +10,7 @@
 
 | Fichero | Para qué |
 |---|---|
-| `Leyva-Vazquez_ThreeWays_BRM_manuscript.pdf` | el manuscrito, 12 pp |
+| `Leyva-Vazquez_ThreeWays_BRM_manuscript.pdf` | el manuscrito, 14 pp |
 | `abstract_plain.txt` | 249 palabras, para pegar en el formulario |
 | `COVER_LETTER.md` | carta al editor |
 
@@ -28,8 +28,9 @@ artifacts, with a worked case and 7,920 elicitations*
 **Autor único y de correspondencia**
 
 Maikel Y. Leyva-Vázquez · `myleyvav@ube.edu.ec` · ORCID `0000-0001-7911-5879` (verificado)
-Universidad Bolivariana del Ecuador, Guayaquil, Ecuador
 Universidad Bernardo O'Higgins, Santiago, Chile
+Universidad Bolivariana del Ecuador, Guayaquil, Ecuador
+Universidad de Guayaquil, Guayaquil, Ecuador
 
 **Palabras clave**
 ```
@@ -74,9 +75,8 @@ requiere actualizar `tlmgr` primero.
 
 ## Antes de enviar
 
-1. **Subir el repo.** `github.com/mleyvaz/elicited-evaluation-design` no existe todavía. El
-   manuscrito y la carta lo citan los dos. Es lo primero que comprueba un revisor de un paper que
-   presume de liberar todo, y en BRM pesa más que en otras revistas.
+1. ~~Subir el repo.~~ **Hecho**: `github.com/mleyvaz/elicited-evaluation-design` está público
+   con los dos bancos, las 7.920 generaciones, los scripts y el código de cada figura.
 2. **Revisores sugeridos.** El formulario los pide. Los candidatos naturales salen de la propia
    bibliografía —los autores del trabajo sobre sensibilidad al protocolo y del de fiabilidad de
    jueces LLM—, pero elígelos tú: no conviene proponer a nadie con quien haya relación.
@@ -86,8 +86,20 @@ requiere actualizar `tlmgr` primero.
    empírico antes que didáctico —7.920 elicitaciones— así que *Article* es lo correcto. Si
    rechazan por alcance, reencuadrarlo como Tutorial es la segunda bala.
 
+## Coste
+
+**Publicar aquí no cuesta nada** si eliges la vía de suscripción. BRM es híbrida: tras la
+aceptación el formulario ofrece acceso abierto por £2.690 / $4.090 / €3.090, y está diseñado
+para que digas que sí. Es opcional. Elegir suscripción deja el artículo tras muro de pago, pero
+el preprint del repositorio sigue abierto para todos.
+
 ## Si BRM rechaza
 
-- **Information Processing & Management** (Elsevier, IF 6,9, Q1) — más impacto, peor encaje.
-- **Natural Language Processing** (Cambridge, ex-*Natural Language Engineering*, Q1 Lingüística /
-  Q2 IA) — opción segura, pero es open access completo desde 2024: pregunta el APC antes.
+El plan completo, con las tarifas verificadas de las tres, está en `../alternates/READY_TO_FIRE.md`.
+
+- **Information Processing & Management** (Elsevier, IF 6,9, Q1) — híbrida, gratis por
+  suscripción. Más impacto, peor encaje.
+- **JAIR** (IF 4,0) — diamante, no cobra nada nunca.
+
+*Natural Language Processing* (Cambridge) se descartó: pasó a oro completo en 2024 con APC
+obligatorio de £2.610 y sin vía de suscripción.
