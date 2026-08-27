@@ -1,84 +1,91 @@
-# Versiones alternativas — listas, en espera
+# Las tres versiones — listas, y ninguna cuesta dinero
 
-**Regla que no se salta:** solo una revista a la vez. Estas dos versiones existen para que el
-día que llegue un rechazo de BRM el reenvío salga en horas, no en semanas. No se envían en
-paralelo: eso es envío duplicado, y cambiar el título no lo cambia.
+**Regla que no se salta:** una revista a la vez. Estas versiones existen para que el día que
+llegue un rechazo el reenvío salga en horas, no en semanas. Enviar en paralelo es envío
+duplicado, y cambiar el título no lo cambia.
 
-**Orden de disparo**
+## Coste: verificado, cero en las tres
 
-```
-1. Behavior Research Methods      ← enviado / en curso
-2. Information Processing & Mgmt  ← si BRM rechaza
-3. Natural Language Processing    ← si IP&M rechaza
-```
+| Orden | Revista | Modelo | Qué cuesta |
+|---|---|---|---|
+| **1** | Behavior Research Methods (Springer) | híbrida | **0 €** por la vía de suscripción. El APC de £2.690 / $4.090 / €3.090 es **opcional** y solo si quieres acceso abierto; se elige *después* de la aceptación |
+| **2** | Information Processing & Management (Elsevier) | híbrida | **0 $** por la vía de suscripción. APC de $3.720 solo si eliges OA |
+| **3** | Journal of AI Research (JAIR) | **diamante** | **0**. No cobra nada, nunca. Sin APC y sin cuota de envío |
 
-Antes de reenviar, dos cosas: retirar formalmente en el portal anterior (o tener el rechazo por
-escrito), y actualizar en la carta la frase de "not under consideration elsewhere".
+**Cuidado con el paso de la aceptación.** En BRM y en IP&M el formulario te ofrece el acceso
+abierto *después* de que te acepten, y está diseñado para que digas que sí. Si no quieres pagar,
+ahí hay que elegir explícitamente la vía de suscripción. El artículo se publica igual; lo único
+que cambia es que queda tras el muro de pago, y el preprint en el repositorio sigue siendo libre.
+
+## Descartada por cobrar
+
+**Natural Language Processing** (Cambridge, la antigua *Natural Language Engineering*) era la
+tercera opción hasta que verifiqué la tarifa: desde 2024 es **oro completo**, con APC obligatorio
+de **£2.610 / $3.655**. No hay vía de suscripción. Cambridge tiene exenciones y descuentos por
+equidad, pero hay que solicitarlos y no están garantizados. Queda como suplente de pago si algún
+día hay financiación; mientras tanto, JAIR ocupa su lugar y no cuesta nada.
 
 ---
+
+## Orden de disparo
+
+```
+1. Behavior Research Methods   ← el envío actual
+2. Information Processing & Mgmt  ← si BRM rechaza
+3. JAIR                           ← si IP&M rechaza
+```
+
+Antes de cada reenvío: retirada formal en el portal anterior o rechazo por escrito, y actualizar
+en la carta la frase de *"not under consideration elsewhere"*.
+
+---
+
+## Versión 1 — Behavior Research Methods
+
+Carpeta `brm_submission/`. Manuscrito, carta al editor, abstract de 249 palabras para el
+formulario y la hoja con todos los campos. Encaje: psicometría aplicada a un tipo nuevo de
+respondente.
 
 ## Versión 2 — Information Processing & Management
 
-Encaje: su público construye y evalúa sistemas, no instrumentos psicométricos. El paper se
-vende como fiabilidad de una tubería de evaluación, no como validez de una medida.
+`alternates/main_ipm.pdf`, abstract en `abstract_IPM.txt`.
 
-**Título**
-```
-When the Instrument Produces the Score: Item Sampling, Instruction Framing and
-Threshold Placement in LLM-Based Evaluation
-```
+**Título:** *When the Instrument Produces the Score: Item Sampling, Instruction Framing and
+Threshold Placement in LLM-Based Evaluation*
 
-**Qué cambia respecto de la versión BRM**
+El encuadre pasa de psicometría a tuberías de evaluación: su lector despliega un juez LLM y
+hereda estas tres decisiones sin saberlo. El muestreo de ítems se presenta como dimensionar un
+banco de pruebas. El párrafo *What is not new* se apoya en la literatura de evaluación de LLM en
+vez de en Cronbach.
 
-- El marco de la introducción pasa de psicometría a *evaluation pipelines*: quien despliega un
-  juez LLM en producción hereda estas tres decisiones sin saberlo.
-- El párrafo *What is not new* deja de apoyarse en Cronbach y se apoya en la literatura de
-  evaluación de LLM, que es la que su revisor conoce.
-- La regla de los ítems se presenta como dimensionamiento de un banco de pruebas, no como
-  precisión de un instrumento.
-- El apartado de validez de constructo se acorta: allí no es la objeción principal.
+## Versión 3 — JAIR
 
-**Abstract** — en `abstract_IPM.txt`. Sin límite de 250 estricto; IP&M admite más holgura.
+`alternates/main_nlp.pdf`, abstract en `abstract_NLP_Cambridge.txt` (el nombre del fichero
+conserva el destino original; el contenido sirve igual para JAIR, que es la misma comunidad).
 
----
+**Título:** *How Much of an Elicited Evaluation Is the Protocol? Three Measured Artifacts and the
+Design Rules They Imply*
 
-## Versión 3 — Natural Language Processing (Cambridge)
+Lidera con el umbral y la instrucción, que es lo que esa comunidad reconoce como suyo, y se
+posiciona como continuación de la línea de sensibilidad al prompt y fiabilidad de jueces.
+**El cuerpo NO está reordenado**: las secciones siguen el orden de la versión BRM. Reordenarlas
+exige reescribir transiciones y referencias cruzadas, y es una decisión que conviene tomar si un
+revisor lo pide, no antes.
 
-Encaje: comunidad de PLN. Aquí lo que vende es LLM-as-a-judge y la sensibilidad al prompt.
-
-**Título**
-```
-How Much of an Elicited Evaluation Is the Protocol? Three Measured Artifacts and the
-Design Rules They Imply
-```
-
-**Qué cambia**
-
-- **El abstract** lidera con el umbral y la instrucción, que son los que esa comunidad reconoce
-  como suyos, y deja el muestreo de ítems en tercer lugar. **El cuerpo NO está reordenado**: sus
-  secciones siguen en el orden de la versión BRM. Reordenarlas exige reescribir las transiciones
-  y las referencias cruzadas, y es una decisión que conviene tomar viendo si el revisor lo pide,
-  no antes.
-- Se cita explícitamente el trabajo de sensibilidad al protocolo y el de fiabilidad de jueces
-  como el hilo que este paper continúa.
-- El vocabulario psicométrico (*between-item variance*, *construct validity*) se traduce a
-  *benchmark design* y *prompt sensitivity* donde no pierda precisión.
-
-**Ojo con el APC:** es open access completo desde 2024. Pregunta el importe antes de enviar.
+JAIR no tiene límite estricto de longitud y valora el material reproducible, así que el
+repositorio juega a favor igual que en BRM.
 
 ---
 
-## Lo que NO cambia en ninguna versión
+## Lo que NO cambia entre versiones
 
-Los datos, los números, las figuras, las reglas de diseño y las declaraciones. Cambia el
-encuadre y el orden de presentación, no el contenido. Si cambiara el contenido serían papers
-distintos y habría que preguntarse si eso es honesto; no lo son, y por eso van en serie.
+Datos, números, figuras, reglas de diseño y declaraciones. Cambian el título, el resumen y un
+párrafo de encuadre. Las tres se generan de `paper/main.tex` con `build_variants.py`, así que
+cualquier corrección se propaga con un comando y no pueden divergir.
 
 ## Si lo que quieres es más papers, no más envíos del mismo
 
-La vía legítima es una contribución distinta, no un reempaquetado. El candidato real es la
-**familia II sola**: 1.800 elicitaciones sobre confianza factual, con la calibración por
-constructo y el hallazgo de que binarizar en 0,9 destruye la única señal del banco. Eso es un
-paper de calibración con su propia pregunta y su propio público, y no repite las conclusiones
-de este. Habría que decidirlo antes de enviar este, para poder declarar la relación en las dos
-cartas.
+La vía legítima es una contribución distinta. El candidato real es la **familia II sola**: 1.800
+elicitaciones sobre confianza factual, la calibración por constructo, y el hallazgo de que
+binarizar en 0,9 destruye la única señal del banco. Tiene su propia pregunta y su propio público.
+Habría que decidirlo antes de enviar este, para declarar la relación en las dos cartas.
