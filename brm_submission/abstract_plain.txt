@@ -1,0 +1,9 @@
+A large class of evaluations asks a language model to report a number about a statement—a confidence, a rating, a degree of some property—and treats that number as a measurement. We quantify three ways such a design measures itself rather than the model, on 7,920 elicitations across six frontier model families and two unrelated construct families.
+
+First, item sampling. A rate computed on one statement is a property of that statement: between-item standard deviations equal or exceed the mean, so a single-item probe carries a 95% interval half-width of ± 0.41 on a [0,1] rate. A published figure of 0.661 obtained from one sentence becomes 0.223 over ten, and reaching ± 0.05 would take 69 items in one family and 20 in the other.
+
+Second, instruction effects, where the obvious ablation misleads. Deleting the sentence that names the measured behaviour barely moves the result; deleting the surrounding framing removes it. Running only the first half would have exonerated the instrument.
+
+Third, threshold artifacts. Models answer on a coarse grid, so a cut placed on a modal value adjudicates a large share of cases by rounding: moving one cut from 0.60 to 0.90 changes a rate by a factor of 16 without touching the data.
+
+Replicating all three on an unrelated task shows that no magnitude transfers intact and that the framing effect does not replicate at all, which sharpens the rule. We state the design rule each result implies and release both item banks, the code and every generation.

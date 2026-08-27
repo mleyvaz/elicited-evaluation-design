@@ -29,42 +29,26 @@ with a worked case and 7{,}920 elicitations}
 \maketitle
 
 \begin{abstract}
-A large and growing class of evaluations asks a language model to report a number about a
-statement---a confidence, a rating, a degree of some property---and then treats the number as a
-measurement. This paper reports three ways such a design measures itself rather than the model,
-each quantified on a corpus of $7{,}920$ elicitations across six frontier families and two
-unrelated construct families.
+A large class of evaluations asks a language model to report a number about a
+statement---a confidence, a rating, a degree of some property---and treats that number as a measurement. We quantify three ways such a design measures itself rather than the model, on
+$7{,}920$ elicitations across six frontier model families and two unrelated construct families.
 
-First, item sampling. Rates computed on one statement per construct are properties of that
-statement: over five constructs the between-item standard deviation equals or exceeds the mean,
-so a single-item probe carries a 95\% interval half-width of $\pm 0.41$ on a $[0,1]$ rate. In
-our worked case a published figure of $0.661$, obtained from one sentence, becomes $0.223$ over
-ten---and $0.661$ is the ceiling of the ten-item range. Reaching $\pm 0.05$ would take $69$
-items.
+First, item sampling. A rate computed on one statement is a property of that statement:
+between-item standard deviations equal or exceed the mean, so a single-item probe carries a
+95\% interval half-width of $\pm 0.41$ on a $[0,1]$ rate. A published figure of $0.661$ obtained
+from one sentence becomes $0.223$ over ten, and reaching $\pm 0.05$ would take $69$ items in one
+family and $20$ in the other.
 
-Second, instruction effects, and here the obvious diagnosis is wrong. Our elicitation tells the
-model that the reported degrees need not sum to one, which is the behaviour the study measures.
-Deleting that permission barely moves the result ($0.077 \to 0.060$, overlapping intervals).
-Deleting the surrounding framing takes it to $0.004$ and triples spontaneous normalization.
-Ablating the sentence you suspect is not enough; the question itself is the treatment.
+Second, instruction effects, where the obvious ablation misleads. Deleting the sentence that
+names the measured behaviour barely moves the result; deleting the surrounding framing removes it. Running only the first half would have exonerated the instrument.
 
-Third, threshold artifacts. Models answer on a coarse grid---$46$ distinct values across
-$7{,}852$ elicited components, $89.5\%$ of them multiples of $0.1$---so a threshold placed on a
-modal value adjudicates a large share of cases by rounding. Ours sits exactly on the mode:
-$37.9\%$ of evaluations land on the boundary, and moving the comparison from strict to
-non-strict moves a control condition from $0.000$ to $0.778$.
+Third, threshold artifacts. Models answer on a coarse grid, so a cut placed on a modal
+value adjudicates a large share of cases by rounding: moving one cut from $0.60$ to $0.90$
+changes a rate by a factor of $16$ without touching the data.
 
-We then replicate all three on a second, unrelated construct family---confidence that a factual
-statement is true, $1{,}800$ new elicitations---to separate properties of the elicited design from
-properties of the subject matter. Item sampling and threshold placement replicate and the second
-grows: on the new bank, moving the cut from $0.60$ to $0.90$ changes the rate on the only
-construct with dispersion by a factor of $16$. Instruction framing does not replicate, and the
-reason generalises the rule---framing is worth what the model could not have inferred without it.
-No magnitude survives the transfer intact, which is the argument for measuring these three rather
-than citing them.
-
-We give the design rules each result implies, and release both banks, the code and all
-generations.
+Replicating all three on an unrelated task shows that no magnitude transfers intact and that the
+framing effect does not replicate at all, which sharpens the rule. We state the design rule each result implies and release both item banks, the code and every
+generation.
 \end{abstract}
 
 \section{The shape of the problem}
