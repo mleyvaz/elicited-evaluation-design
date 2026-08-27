@@ -1,0 +1,302 @@
+{
+ "B01": {
+  "orig_id": "obt-02",
+  "construct": "obscure_true",
+  "gold": "has a known answer"
+ },
+ "B02": {
+  "orig_id": "obt-01",
+  "construct": "obscure_true",
+  "gold": "has a known answer"
+ },
+ "B03": {
+  "orig_id": "anf-01",
+  "construct": "anchor_false",
+  "gold": "has a known answer"
+ },
+ "B04": {
+  "orig_id": "obf-01",
+  "construct": "obscure_false",
+  "gold": "has a known answer"
+ },
+ "B05": {
+  "orig_id": "wkf-01",
+  "construct": "wellknown_false",
+  "gold": "has a known answer"
+ },
+ "B06": {
+  "orig_id": "obt-06",
+  "construct": "obscure_true",
+  "gold": "has a known answer"
+ },
+ "B07": {
+  "orig_id": "uns-08",
+  "construct": "unsettled",
+  "gold": "genuinely open"
+ },
+ "B08": {
+  "orig_id": "anf-03",
+  "construct": "anchor_false",
+  "gold": "has a known answer"
+ },
+ "B09": {
+  "orig_id": "wkt-04",
+  "construct": "wellknown_true",
+  "gold": "has a known answer"
+ },
+ "B10": {
+  "orig_id": "anf-05",
+  "construct": "anchor_false",
+  "gold": "has a known answer"
+ },
+ "B11": {
+  "orig_id": "obt-08",
+  "construct": "obscure_true",
+  "gold": "has a known answer"
+ },
+ "B12": {
+  "orig_id": "wkf-04",
+  "construct": "wellknown_false",
+  "gold": "has a known answer"
+ },
+ "B13": {
+  "orig_id": "wkf-09",
+  "construct": "wellknown_false",
+  "gold": "has a known answer"
+ },
+ "B14": {
+  "orig_id": "wkf-02",
+  "construct": "wellknown_false",
+  "gold": "has a known answer"
+ },
+ "B15": {
+  "orig_id": "obf-10",
+  "construct": "obscure_false",
+  "gold": "has a known answer"
+ },
+ "B16": {
+  "orig_id": "wkt-03",
+  "construct": "wellknown_true",
+  "gold": "has a known answer"
+ },
+ "B17": {
+  "orig_id": "obf-09",
+  "construct": "obscure_false",
+  "gold": "has a known answer"
+ },
+ "B18": {
+  "orig_id": "ant-03",
+  "construct": "anchor_true",
+  "gold": "has a known answer"
+ },
+ "B19": {
+  "orig_id": "wkt-05",
+  "construct": "wellknown_true",
+  "gold": "has a known answer"
+ },
+ "B20": {
+  "orig_id": "wkt-06",
+  "construct": "wellknown_true",
+  "gold": "has a known answer"
+ },
+ "B21": {
+  "orig_id": "anf-04",
+  "construct": "anchor_false",
+  "gold": "has a known answer"
+ },
+ "B22": {
+  "orig_id": "ant-05",
+  "construct": "anchor_true",
+  "gold": "has a known answer"
+ },
+ "B23": {
+  "orig_id": "obt-04",
+  "construct": "obscure_true",
+  "gold": "has a known answer"
+ },
+ "B24": {
+  "orig_id": "wkt-02",
+  "construct": "wellknown_true",
+  "gold": "has a known answer"
+ },
+ "B25": {
+  "orig_id": "wkf-08",
+  "construct": "wellknown_false",
+  "gold": "has a known answer"
+ },
+ "B26": {
+  "orig_id": "ant-01",
+  "construct": "anchor_true",
+  "gold": "has a known answer"
+ },
+ "B27": {
+  "orig_id": "obt-05",
+  "construct": "obscure_true",
+  "gold": "has a known answer"
+ },
+ "B28": {
+  "orig_id": "wkt-09",
+  "construct": "wellknown_true",
+  "gold": "has a known answer"
+ },
+ "B29": {
+  "orig_id": "ant-04",
+  "construct": "anchor_true",
+  "gold": "has a known answer"
+ },
+ "B30": {
+  "orig_id": "obf-03",
+  "construct": "obscure_false",
+  "gold": "has a known answer"
+ },
+ "B31": {
+  "orig_id": "uns-09",
+  "construct": "unsettled",
+  "gold": "genuinely open"
+ },
+ "B32": {
+  "orig_id": "wkt-08",
+  "construct": "wellknown_true",
+  "gold": "has a known answer"
+ },
+ "B33": {
+  "orig_id": "ant-02",
+  "construct": "anchor_true",
+  "gold": "has a known answer"
+ },
+ "B34": {
+  "orig_id": "uns-06",
+  "construct": "unsettled",
+  "gold": "genuinely open"
+ },
+ "B35": {
+  "orig_id": "uns-04",
+  "construct": "unsettled",
+  "gold": "genuinely open"
+ },
+ "B36": {
+  "orig_id": "obf-05",
+  "construct": "obscure_false",
+  "gold": "has a known answer"
+ },
+ "B37": {
+  "orig_id": "uns-02",
+  "construct": "unsettled",
+  "gold": "genuinely open"
+ },
+ "B38": {
+  "orig_id": "obf-06",
+  "construct": "obscure_false",
+  "gold": "has a known answer"
+ },
+ "B39": {
+  "orig_id": "obf-04",
+  "construct": "obscure_false",
+  "gold": "has a known answer"
+ },
+ "B40": {
+  "orig_id": "obt-09",
+  "construct": "obscure_true",
+  "gold": "has a known answer"
+ },
+ "B41": {
+  "orig_id": "wkt-07",
+  "construct": "wellknown_true",
+  "gold": "has a known answer"
+ },
+ "B42": {
+  "orig_id": "obf-02",
+  "construct": "obscure_false",
+  "gold": "has a known answer"
+ },
+ "B43": {
+  "orig_id": "wkf-05",
+  "construct": "wellknown_false",
+  "gold": "has a known answer"
+ },
+ "B44": {
+  "orig_id": "uns-10",
+  "construct": "unsettled",
+  "gold": "genuinely open"
+ },
+ "B45": {
+  "orig_id": "uns-01",
+  "construct": "unsettled",
+  "gold": "genuinely open"
+ },
+ "B46": {
+  "orig_id": "wkf-03",
+  "construct": "wellknown_false",
+  "gold": "has a known answer"
+ },
+ "B47": {
+  "orig_id": "obf-07",
+  "construct": "obscure_false",
+  "gold": "has a known answer"
+ },
+ "B48": {
+  "orig_id": "wkf-10",
+  "construct": "wellknown_false",
+  "gold": "has a known answer"
+ },
+ "B49": {
+  "orig_id": "uns-03",
+  "construct": "unsettled",
+  "gold": "genuinely open"
+ },
+ "B50": {
+  "orig_id": "obt-10",
+  "construct": "obscure_true",
+  "gold": "has a known answer"
+ },
+ "B51": {
+  "orig_id": "obf-08",
+  "construct": "obscure_false",
+  "gold": "has a known answer"
+ },
+ "B52": {
+  "orig_id": "wkf-07",
+  "construct": "wellknown_false",
+  "gold": "has a known answer"
+ },
+ "B53": {
+  "orig_id": "uns-05",
+  "construct": "unsettled",
+  "gold": "genuinely open"
+ },
+ "B54": {
+  "orig_id": "anf-02",
+  "construct": "anchor_false",
+  "gold": "has a known answer"
+ },
+ "B55": {
+  "orig_id": "obt-03",
+  "construct": "obscure_true",
+  "gold": "has a known answer"
+ },
+ "B56": {
+  "orig_id": "wkt-01",
+  "construct": "wellknown_true",
+  "gold": "has a known answer"
+ },
+ "B57": {
+  "orig_id": "wkf-06",
+  "construct": "wellknown_false",
+  "gold": "has a known answer"
+ },
+ "B58": {
+  "orig_id": "uns-07",
+  "construct": "unsettled",
+  "gold": "genuinely open"
+ },
+ "B59": {
+  "orig_id": "wkt-10",
+  "construct": "wellknown_true",
+  "gold": "has a known answer"
+ },
+ "B60": {
+  "orig_id": "obt-07",
+  "construct": "obscure_true",
+  "gold": "has a known answer"
+ }
+}

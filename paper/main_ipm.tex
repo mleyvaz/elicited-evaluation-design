@@ -32,13 +32,13 @@ in {LLM}-based evaluation}
 \begin{abstract}
 Systems that evaluate language models increasingly do so by asking a model for a number about a statement---a confidence, a relevance score, a rating, a degree of some property---and then treating that number as a measurement. The design is now embedded in retrieval evaluation, in LLM-as-a-judge pipelines, in self-critique loops and in most bespoke probes built for a single study. We quantify three ways in which such a pipeline produces the score as much as the model does, on $7{,}920$ elicitations across six frontier model families and two unrelated construct families.
 
-The first is item sampling. A rate computed on one statement is a property of that statement: between-item standard deviations equal or exceed the mean, so a single-item probe carries a 95\% interval half-width of $\pm$ 0.41 on a [0,1] rate. A published figure of 0.661 obtained from one sentence becomes 0.223 over ten. Sizing a test bank for a $\pm$ 0.05 half-width takes 69 items in one family and 20 in the other, and nothing short of measuring tells you which regime you are in.
+The first is item sampling. A rate computed on one statement is a property of that statement: between-item standard deviations are of the same order as the mean and exceed it in four of the five constructs, so a single-item probe carries a 95\% interval half-width of $\pm$ 0.41 on a [0,1] rate. A published figure of 0.661 obtained from one sentence becomes 0.222 over ten. Sizing a test bank for a $\pm$ 0.05 half-width takes 69 items in one family and 20 in the other, and nothing short of measuring tells you which regime you are in.
 
 The second is instruction framing, where the obvious ablation misleads. Deleting the sentence that names the measured behaviour barely moves the result; deleting the surrounding framing removes it entirely. A single-step ablation would have exonerated the instrument.
 
 The third is threshold placement. Models answer on a coarse numeric grid, so a cut placed on a modal value adjudicates a large share of cases by rounding: moving one cut from 0.60 to 0.90 changes a reported rate by a factor of 16 without touching the data.
 
-Replicating all three on an unrelated task shows that no magnitude transfers intact and that the framing effect does not replicate at all, which sharpens the rule rather than weakening it. We state the design rule each result implies, and release both item banks, the analysis code and every raw generation.
+Replicating all three on an unrelated task shows that no magnitude transfers intact and that the framing effect does not replicate in the mean, though it still moves the shape of the response, which sharpens the rule rather than weakening it. We state the design rule each result implies, and release both item banks, the analysis code and every raw generation.
 \end{abstract}
 
 \section{The shape of the problem}
@@ -360,26 +360,41 @@ items and we assigned them to constructs, so a reader is entitled to ask who say
 statements measure ethical conflict rather than something else. That question is the classical
 one of construct validity \citep{cronbachmeehl1955, messick1995}, and it arrives here in
 the form measurement theory gives it for computational systems \citep{jacobs2021measurement}. The honest answer is that we do, and that the assignment has not
-been validated against independent judges. What we can say is
-that the three results are invariant to whether the labels are right, though not equally so. The
-second and third are manipulations of the instrument---an instruction deleted, a threshold
-moved---applied to a fixed set of items, and neither depends on what the items are called: the
-same statements are asked twice and the difference is the effect.
+been validated against independent judges. What we can say is more limited than we first wrote, and the limit runs in a direction worth
+setting out.
+
+In the first family the second and third results are manipulations of the instrument---an
+instruction deleted, a threshold moved---applied to a fixed set of items, and there the labels
+are not load-bearing: the same statements are asked twice and the difference is the effect.
+
+In the second family they are load-bearing, and we were wrong to imply otherwise. Both effects
+live entirely on the open-question construct. On the four settled constructs the answers are
+pinned near $0$ or $1$, where moving a threshold changes nothing and deleting an instruction
+changes nothing, and Table~\ref{tab:twoways} shows exactly that. So the existence of those two
+effects depends on that subset really consisting of questions with no settled answer. If those
+ten items are not genuinely open, the effects do not shrink---they have nowhere to occur.
+That is a construct-validity dependency at the centre of the replication, and the classification
+instrument we release covers the first family's items and not these, which is the gap a reader
+should hold against us first.
 
 The first needs a qualification we would rather state than have extracted from us. A group
 wrongly named still has the dispersion we report, so the measurement stands; but the rule drawn
 from it---that reaching a $\pm 0.05$ half-width takes sixty-nine items---is an inference about
 estimating a \emph{construct-level} quantity, and it presupposes that the items sample one. If
-they do not, the between-item standard deviation mixes two sources: variability among items that
-do belong to a construct, and heterogeneity among items that do not. Both inflate it, so
-sixty-nine is an upper bound on what a cleanly constructed bank would need rather than a target
-to aim at. That cuts against the number and in favour of the rule, which is to measure the
-dispersion in your own bank rather than borrow ours. Construct labelling would matter for a claim of the form ``models behave
+they do not, the between-item standard deviation mixes variability among items that do belong to
+a construct with heterogeneity among items that do not, and we cannot say in which direction
+that moves the estimate: a heterogeneous group is not guaranteed to be more variable than the
+construct it was meant to sample. What follows is weaker and more useful than an upper bound.
+The sixty-nine is a property of \emph{this bank}, not a constant of the construct, and it stays
+that way until the assignment is validated. Which is the rule anyway: measure the dispersion in
+your own bank rather than borrow ours. Construct labelling would matter for a claim of the form ``models behave
 differently on ethical conflict than on vagueness'', and the one such contrast we report, in the
 first family, we report as not established. To let others check the labelling rather than take
-it on trust, the release includes a blind classification instrument: the unmarked items and the
-anchors in randomised order, the construct definitions, and the script that returns agreement
-between raters and against our assignment.
+it on trust, the release includes two blind classification instruments, one per family: the items in
+randomised order with the anchors mixed in unannounced, the category definitions, and the script
+that returns agreement between raters and against our assignment. The second family gets a
+narrower question than the first---whether a statement has a known answer or is genuinely
+open---because that is the distinction its results rest on. Neither has been run.
 
 What the results do support is narrow and, we think, useful: that these three failure modes are
 not hypothetical, that their sizes are comparable to the effects such studies report, and that

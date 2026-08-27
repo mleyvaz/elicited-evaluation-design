@@ -1,362 +1,302 @@
 {
- "S01": {
+ "A01": {
   "orig_id": "anch-06",
   "phenomenon": "consensus",
-  "form": "anchor",
   "gold": "settled truth"
  },
- "S02": {
+ "A02": {
   "orig_id": "cont-02-bare",
   "phenomenon": "contingency",
-  "form": "bare",
   "gold": "future contingency"
  },
- "S03": {
+ "A03": {
   "orig_id": "igno-08-bare",
   "phenomenon": "ignorance",
-  "form": "bare",
   "gold": "epistemic ignorance"
  },
- "S04": {
+ "A04": {
   "orig_id": "vagu-02-bare",
   "phenomenon": "vagueness",
-  "form": "bare",
   "gold": "vagueness"
  },
- "S05": {
+ "A05": {
   "orig_id": "ethi-02-bare",
   "phenomenon": "ethical",
-  "form": "bare",
   "gold": "ethical conflict"
  },
- "S06": {
+ "A06": {
   "orig_id": "cont-05-bare",
   "phenomenon": "contingency",
-  "form": "bare",
   "gold": "future contingency"
  },
- "S07": {
+ "A07": {
   "orig_id": "para-08-bare",
   "phenomenon": "paradox",
-  "form": "bare",
   "gold": "logical paradox"
  },
- "S08": {
+ "A08": {
   "orig_id": "vagu-04-bare",
   "phenomenon": "vagueness",
-  "form": "bare",
   "gold": "vagueness"
  },
- "S09": {
+ "A09": {
   "orig_id": "anch-01",
   "phenomenon": "tautology",
-  "form": "anchor",
   "gold": "settled truth"
  },
- "S10": {
+ "A10": {
   "orig_id": "ethi-07-bare",
   "phenomenon": "ethical",
-  "form": "bare",
   "gold": "ethical conflict"
  },
- "S11": {
+ "A11": {
   "orig_id": "ethi-08-bare",
   "phenomenon": "ethical",
-  "form": "bare",
   "gold": "ethical conflict"
  },
- "S12": {
+ "A12": {
   "orig_id": "vagu-03-bare",
   "phenomenon": "vagueness",
-  "form": "bare",
   "gold": "vagueness"
  },
- "S13": {
+ "A13": {
   "orig_id": "cont-01-bare",
   "phenomenon": "contingency",
-  "form": "bare",
   "gold": "future contingency"
  },
- "S14": {
+ "A14": {
   "orig_id": "vagu-09-bare",
   "phenomenon": "vagueness",
-  "form": "bare",
   "gold": "vagueness"
  },
- "S15": {
+ "A15": {
   "orig_id": "para-05-bare",
   "phenomenon": "paradox",
-  "form": "bare",
   "gold": "logical paradox"
  },
- "S16": {
+ "A16": {
   "orig_id": "cont-09-bare",
   "phenomenon": "contingency",
-  "form": "bare",
   "gold": "future contingency"
  },
- "S17": {
+ "A17": {
   "orig_id": "para-02-bare",
   "phenomenon": "paradox",
-  "form": "bare",
   "gold": "logical paradox"
  },
- "S18": {
+ "A18": {
   "orig_id": "ethi-05-bare",
   "phenomenon": "ethical",
-  "form": "bare",
   "gold": "ethical conflict"
  },
- "S19": {
+ "A19": {
   "orig_id": "igno-10-bare",
   "phenomenon": "ignorance",
-  "form": "bare",
   "gold": "epistemic ignorance"
  },
- "S20": {
+ "A20": {
   "orig_id": "igno-09-bare",
   "phenomenon": "ignorance",
-  "form": "bare",
   "gold": "epistemic ignorance"
  },
- "S21": {
+ "A21": {
   "orig_id": "anch-02",
   "phenomenon": "tautology",
-  "form": "anchor",
   "gold": "settled truth"
  },
- "S22": {
+ "A22": {
   "orig_id": "para-07-bare",
   "phenomenon": "paradox",
-  "form": "bare",
   "gold": "logical paradox"
  },
- "S23": {
+ "A23": {
   "orig_id": "igno-01-bare",
   "phenomenon": "ignorance",
-  "form": "bare",
   "gold": "epistemic ignorance"
  },
- "S24": {
+ "A24": {
   "orig_id": "anch-03",
   "phenomenon": "tautology",
-  "form": "anchor",
   "gold": "settled truth"
  },
- "S25": {
+ "A25": {
   "orig_id": "ethi-06-bare",
   "phenomenon": "ethical",
-  "form": "bare",
   "gold": "ethical conflict"
  },
- "S26": {
+ "A26": {
   "orig_id": "ethi-09-bare",
   "phenomenon": "ethical",
-  "form": "bare",
   "gold": "ethical conflict"
  },
- "S27": {
+ "A27": {
   "orig_id": "igno-04-bare",
   "phenomenon": "ignorance",
-  "form": "bare",
   "gold": "epistemic ignorance"
  },
- "S28": {
+ "A28": {
   "orig_id": "anch-09",
   "phenomenon": "consensus",
-  "form": "anchor",
   "gold": "settled truth"
  },
- "S29": {
+ "A29": {
   "orig_id": "vagu-01-bare",
   "phenomenon": "vagueness",
-  "form": "bare",
   "gold": "vagueness"
  },
- "S30": {
+ "A30": {
   "orig_id": "anch-08",
   "phenomenon": "consensus",
-  "form": "anchor",
   "gold": "settled truth"
  },
- "S31": {
+ "A31": {
   "orig_id": "cont-06-bare",
   "phenomenon": "contingency",
-  "form": "bare",
   "gold": "future contingency"
  },
- "S32": {
+ "A32": {
   "orig_id": "cont-08-bare",
   "phenomenon": "contingency",
-  "form": "bare",
   "gold": "future contingency"
  },
- "S33": {
+ "A33": {
   "orig_id": "anch-04",
   "phenomenon": "tautology",
-  "form": "anchor",
   "gold": "settled truth"
  },
- "S34": {
+ "A34": {
   "orig_id": "vagu-08-bare",
   "phenomenon": "vagueness",
-  "form": "bare",
   "gold": "vagueness"
  },
- "S35": {
+ "A35": {
   "orig_id": "igno-03-bare",
   "phenomenon": "ignorance",
-  "form": "bare",
   "gold": "epistemic ignorance"
  },
- "S36": {
+ "A36": {
   "orig_id": "vagu-10-bare",
   "phenomenon": "vagueness",
-  "form": "bare",
   "gold": "vagueness"
  },
- "S37": {
+ "A37": {
   "orig_id": "para-06-bare",
   "phenomenon": "paradox",
-  "form": "bare",
   "gold": "logical paradox"
  },
- "S38": {
+ "A38": {
   "orig_id": "anch-07",
   "phenomenon": "consensus",
-  "form": "anchor",
   "gold": "settled truth"
  },
- "S39": {
+ "A39": {
   "orig_id": "ethi-04-bare",
   "phenomenon": "ethical",
-  "form": "bare",
   "gold": "ethical conflict"
  },
- "S40": {
+ "A40": {
   "orig_id": "igno-05-bare",
   "phenomenon": "ignorance",
-  "form": "bare",
   "gold": "epistemic ignorance"
  },
- "S41": {
+ "A41": {
   "orig_id": "para-09-bare",
   "phenomenon": "paradox",
-  "form": "bare",
   "gold": "logical paradox"
  },
- "S42": {
+ "A42": {
   "orig_id": "para-04-bare",
   "phenomenon": "paradox",
-  "form": "bare",
   "gold": "logical paradox"
  },
- "S43": {
+ "A43": {
   "orig_id": "anch-05",
   "phenomenon": "tautology",
-  "form": "anchor",
   "gold": "settled truth"
  },
- "S44": {
+ "A44": {
   "orig_id": "igno-02-bare",
   "phenomenon": "ignorance",
-  "form": "bare",
   "gold": "epistemic ignorance"
  },
- "S45": {
+ "A45": {
   "orig_id": "igno-07-bare",
   "phenomenon": "ignorance",
-  "form": "bare",
   "gold": "epistemic ignorance"
  },
- "S46": {
+ "A46": {
   "orig_id": "para-01-bare",
   "phenomenon": "paradox",
-  "form": "bare",
   "gold": "logical paradox"
  },
- "S47": {
+ "A47": {
   "orig_id": "anch-10",
   "phenomenon": "consensus",
-  "form": "anchor",
   "gold": "settled truth"
  },
- "S48": {
+ "A48": {
   "orig_id": "vagu-06-bare",
   "phenomenon": "vagueness",
-  "form": "bare",
   "gold": "vagueness"
  },
- "S49": {
+ "A49": {
   "orig_id": "ethi-03-bare",
   "phenomenon": "ethical",
-  "form": "bare",
   "gold": "ethical conflict"
  },
- "S50": {
+ "A50": {
   "orig_id": "vagu-05-bare",
   "phenomenon": "vagueness",
-  "form": "bare",
   "gold": "vagueness"
  },
- "S51": {
+ "A51": {
   "orig_id": "para-03-bare",
   "phenomenon": "paradox",
-  "form": "bare",
   "gold": "logical paradox"
  },
- "S52": {
+ "A52": {
   "orig_id": "cont-03-bare",
   "phenomenon": "contingency",
-  "form": "bare",
   "gold": "future contingency"
  },
- "S53": {
+ "A53": {
   "orig_id": "ethi-01-bare",
   "phenomenon": "ethical",
-  "form": "bare",
   "gold": "ethical conflict"
  },
- "S54": {
+ "A54": {
   "orig_id": "vagu-07-bare",
   "phenomenon": "vagueness",
-  "form": "bare",
   "gold": "vagueness"
  },
- "S55": {
+ "A55": {
   "orig_id": "igno-06-bare",
   "phenomenon": "ignorance",
-  "form": "bare",
   "gold": "epistemic ignorance"
  },
- "S56": {
+ "A56": {
   "orig_id": "cont-10-bare",
   "phenomenon": "contingency",
-  "form": "bare",
   "gold": "future contingency"
  },
- "S57": {
+ "A57": {
   "orig_id": "cont-07-bare",
   "phenomenon": "contingency",
-  "form": "bare",
   "gold": "future contingency"
  },
- "S58": {
+ "A58": {
   "orig_id": "ethi-10-bare",
   "phenomenon": "ethical",
-  "form": "bare",
   "gold": "ethical conflict"
  },
- "S59": {
+ "A59": {
   "orig_id": "para-10-bare",
   "phenomenon": "paradox",
-  "form": "bare",
   "gold": "logical paradox"
  },
- "S60": {
+ "A60": {
   "orig_id": "cont-04-bare",
   "phenomenon": "contingency",
-  "form": "bare",
   "gold": "future contingency"
  }
 }

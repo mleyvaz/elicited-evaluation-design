@@ -15,10 +15,11 @@ without touching the data.
 Instruction framing second, where the natural ablation gives the wrong answer. Deleting the
 sentence that names the measured behaviour barely moves the result; deleting the surrounding
 framing removes it. Running only the first half exonerates the prompt. On the second family the
-framing effect does not replicate at all, and the reason generalises: framing is worth what the
+framing effect does not replicate in the mean, and the reason generalises: framing is worth what the
 model could not have inferred without it.
 
-Item sampling third. Between-item standard deviations equal or exceed the mean, so a single-item
+Item sampling third. Between-item standard deviations are of the same order as the mean and
+exceed it in four of the five constructs, so a single-item
 probe carries a 95% interval half-width of +/-0.41; reaching +/-0.05 takes 69 items in one
 family and 20 in the other.
 

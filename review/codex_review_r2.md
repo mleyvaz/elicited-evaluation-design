@@ -11684,3 +11684,139 @@ family2/results/raw_factual_nolicense.jsonl 360
 family2/results/raw_factual_neutral.jsonl 360
 total 7920
 
+codex
+1. [SEVERITY: major]  
+[STATUS: fix-is-incomplete]  
+WHERE: `paper/main_ipm.tex:35,41`; `paper/main_nlp.tex:36,38`  
+CLAIM: The abstract fixes were made.  
+PROBLEM: Only `paper/main.tex` was fixed. The alternate abstracts still say “equal or exceed,” still use `0.223` in IPM, and still say the framing effect “does not replicate at all.”  
+EVIDENCE: `analyze_quad_bank.py` gives ethical conflict mean `0.222`, SD `0.211`; `section_replication.tex` says the framing effect still moves shape.  
+FIX: Update `alternates/abstract_IPM.txt` and `alternates/abstract_NLP_Cambridge.txt`, then rebuild the variants.
+
+2. [SEVERITY: major]  
+[STATUS: fix-is-incomplete]  
+WHERE: `paper/section_replication.tex:68-75`, `paper/section_replication.tex:102-109`  
+CLAIM: “All intervals in this section resample items.”  
+PROBLEM: The reported mean-ablation intervals are still row-bootstrap intervals, not item-clustered intervals.  
+EVIDENCE: `python family2\boot_units.py` gives item-clustered open-construct mean intervals `[-0.052,+0.009]` and `[-0.044,+0.009]`; the manuscript reports the row-bootstrap intervals `[-0.057,+0.013]` and `[-0.052,+0.016]`.  
+FIX: Replace those two mean intervals with the item-clustered intervals, or narrow the resampling-unit declaration to the focal-0.50 shape intervals only.
+
+3. [SEVERITY: minor]  
+[STATUS: fix-is-incomplete]  
+WHERE: `paper/section_replication.tex:37`; `figures/make_figure_factual.py:48-54`  
+CLAIM: Figure C uses a separate plotted-data denominator.  
+PROBLEM: The rejection is correct for the annotation, but the caption still says “1,080 elicitations” although the plotting script excludes anchors and plots 900 construct elicitations.  
+EVIDENCE: recomputation: all full-bank rows `86.389%` multiples of 0.10; construct-only plotted rows `83.667%`, rounded to `84% of the answers shown`.  
+FIX: Change the caption to “900 construct elicitations, anchors omitted,” or include anchors in the figure.
+
+4. [SEVERITY: major]  
+[STATUS: new-finding]  
+WHERE: `paper/main.tex:376-389` versus `paper/main_ipm.tex:364-368` and `paper/main_nlp.tex:362-366`  
+CLAIM: The three journal versions differ only in title, abstract, and “What is not new.”  
+PROBLEM: The construct-labelling paragraph differs outside the allowed sections. `main.tex` now contains the needed qualification; both variants retain the older unqualified argument.  
+EVIDENCE: after stripping title, abstract, and “What is not new,” the only remaining diff is this paragraph.  
+FIX: Regenerate `main_ipm.tex` and `main_nlp.tex` from current `main.tex`.
+
+5. [SEVERITY: major]  
+[STATUS: new-finding]  
+WHERE: `paper/main.tex:376-389`  
+CLAIM: If labels are wrong, the first result still stands and `69` items is an upper bound for a clean bank.  
+PROBLEM: That does not follow. A mislabeled group’s variance is not guaranteed to upper-bound the variance of the intended construct; it may inflate, deflate, or simply describe a heterogeneous convenience group.  
+EVIDENCE: `validity/analyze_classification.py` currently exits with “faltan hojas rellenas: rater_A, rater_B”; no classification data exist to support the construct-level inference.  
+FIX: State that the `69`-item result is bank-specific unless construct assignment is validated; remove the “upper bound” claim.
+
+6. [SEVERITY: major]  
+[STATUS: new-finding]  
+WHERE: `paper/section_replication.tex:155-163`  
+CLAIM: “Agreement replicates.”  
+PROBLEM: Family II has no repeated generations and does not decompose stochastic repeat disagreement. It substitutes continuous wording sensitivity for binary repeat disagreement, then compares `0.44` to `0.52` without an interval.  
+EVIDENCE: the manuscript itself says “the second bank has no repetitions.” `analyze_factual.py` reports `0.021` wording movement and `0.048` between-model movement; `analyze_pilot_agreement.py` reports binary repeat/model disagreement.  
+FIX: Rename this as an analogous prompt-sensitivity result, not a replication of agreement decomposition.
+
+7. [SEVERITY: major]  
+[STATUS: new-finding]  
+WHERE: `paper/section_replication.tex:180-182`  
+CLAIM: “The threshold effect grows from a factor of 2 to a factor of 16.”  
+PROBLEM: The first-family “factor of 2” is not the headline threshold result and is not defined. Strict-to-nonstrict gives `3.79x` over all Family I rows, `3.28x` over contested rows, and no finite factor on anchors because the strict rate is `0.000`.  
+EVIDENCE: recomputation from `raw_quad_bank.jsonl`: all `0.136 -> 0.514`; contested `0.149 -> 0.488`; anchors `0.000 -> 0.778`.  
+FIX: Replace with the already stated comparable quantities: `0.000 -> 0.778` in Family I and `0.450 -> 0.028` in Family II.
+
+8. [SEVERITY: minor]  
+[STATUS: new-finding]  
+WHERE: `paper/section_replication.tex:17-18`  
+CLAIM: “Where ground truth exists the models are well calibrated (Brier 0.005).”  
+PROBLEM: A low Brier score on these labeled facts supports accuracy/low error, not calibration in the reliability sense.  
+EVIDENCE: `analyze_factual.py` reports Brier `0.0047`; no calibration curve, bins, or repeated forecast frequencies are estimated.  
+FIX: Say “low Brier error” or “assign high confidence to true items and low confidence to false items.”
+
+Earlier findings: in `paper/main.tex`, items 1, 2, 3, 5, 7, 8, and 9 are genuinely resolved; item 4’s rejection is correct for the annotation but incomplete in the caption; item 6 is only partially resolved because not all reported intervals follow the declared item-clustered unit. Across the three-version package, fixes 1, 2, and 5 are incomplete. Verdict: major revision, because the paper still misdeclares a key resampling unit and the alternate manuscripts retain corrected false claims.
+hook: Stop
+hook: Stop Completed
+tokens used
+213,145
+1. [SEVERITY: major]  
+[STATUS: fix-is-incomplete]  
+WHERE: `paper/main_ipm.tex:35,41`; `paper/main_nlp.tex:36,38`  
+CLAIM: The abstract fixes were made.  
+PROBLEM: Only `paper/main.tex` was fixed. The alternate abstracts still say “equal or exceed,” still use `0.223` in IPM, and still say the framing effect “does not replicate at all.”  
+EVIDENCE: `analyze_quad_bank.py` gives ethical conflict mean `0.222`, SD `0.211`; `section_replication.tex` says the framing effect still moves shape.  
+FIX: Update `alternates/abstract_IPM.txt` and `alternates/abstract_NLP_Cambridge.txt`, then rebuild the variants.
+
+2. [SEVERITY: major]  
+[STATUS: fix-is-incomplete]  
+WHERE: `paper/section_replication.tex:68-75`, `paper/section_replication.tex:102-109`  
+CLAIM: “All intervals in this section resample items.”  
+PROBLEM: The reported mean-ablation intervals are still row-bootstrap intervals, not item-clustered intervals.  
+EVIDENCE: `python family2\boot_units.py` gives item-clustered open-construct mean intervals `[-0.052,+0.009]` and `[-0.044,+0.009]`; the manuscript reports the row-bootstrap intervals `[-0.057,+0.013]` and `[-0.052,+0.016]`.  
+FIX: Replace those two mean intervals with the item-clustered intervals, or narrow the resampling-unit declaration to the focal-0.50 shape intervals only.
+
+3. [SEVERITY: minor]  
+[STATUS: fix-is-incomplete]  
+WHERE: `paper/section_replication.tex:37`; `figures/make_figure_factual.py:48-54`  
+CLAIM: Figure C uses a separate plotted-data denominator.  
+PROBLEM: The rejection is correct for the annotation, but the caption still says “1,080 elicitations” although the plotting script excludes anchors and plots 900 construct elicitations.  
+EVIDENCE: recomputation: all full-bank rows `86.389%` multiples of 0.10; construct-only plotted rows `83.667%`, rounded to `84% of the answers shown`.  
+FIX: Change the caption to “900 construct elicitations, anchors omitted,” or include anchors in the figure.
+
+4. [SEVERITY: major]  
+[STATUS: new-finding]  
+WHERE: `paper/main.tex:376-389` versus `paper/main_ipm.tex:364-368` and `paper/main_nlp.tex:362-366`  
+CLAIM: The three journal versions differ only in title, abstract, and “What is not new.”  
+PROBLEM: The construct-labelling paragraph differs outside the allowed sections. `main.tex` now contains the needed qualification; both variants retain the older unqualified argument.  
+EVIDENCE: after stripping title, abstract, and “What is not new,” the only remaining diff is this paragraph.  
+FIX: Regenerate `main_ipm.tex` and `main_nlp.tex` from current `main.tex`.
+
+5. [SEVERITY: major]  
+[STATUS: new-finding]  
+WHERE: `paper/main.tex:376-389`  
+CLAIM: If labels are wrong, the first result still stands and `69` items is an upper bound for a clean bank.  
+PROBLEM: That does not follow. A mislabeled group’s variance is not guaranteed to upper-bound the variance of the intended construct; it may inflate, deflate, or simply describe a heterogeneous convenience group.  
+EVIDENCE: `validity/analyze_classification.py` currently exits with “faltan hojas rellenas: rater_A, rater_B”; no classification data exist to support the construct-level inference.  
+FIX: State that the `69`-item result is bank-specific unless construct assignment is validated; remove the “upper bound” claim.
+
+6. [SEVERITY: major]  
+[STATUS: new-finding]  
+WHERE: `paper/section_replication.tex:155-163`  
+CLAIM: “Agreement replicates.”  
+PROBLEM: Family II has no repeated generations and does not decompose stochastic repeat disagreement. It substitutes continuous wording sensitivity for binary repeat disagreement, then compares `0.44` to `0.52` without an interval.  
+EVIDENCE: the manuscript itself says “the second bank has no repetitions.” `analyze_factual.py` reports `0.021` wording movement and `0.048` between-model movement; `analyze_pilot_agreement.py` reports binary repeat/model disagreement.  
+FIX: Rename this as an analogous prompt-sensitivity result, not a replication of agreement decomposition.
+
+7. [SEVERITY: major]  
+[STATUS: new-finding]  
+WHERE: `paper/section_replication.tex:180-182`  
+CLAIM: “The threshold effect grows from a factor of 2 to a factor of 16.”  
+PROBLEM: The first-family “factor of 2” is not the headline threshold result and is not defined. Strict-to-nonstrict gives `3.79x` over all Family I rows, `3.28x` over contested rows, and no finite factor on anchors because the strict rate is `0.000`.  
+EVIDENCE: recomputation from `raw_quad_bank.jsonl`: all `0.136 -> 0.514`; contested `0.149 -> 0.488`; anchors `0.000 -> 0.778`.  
+FIX: Replace with the already stated comparable quantities: `0.000 -> 0.778` in Family I and `0.450 -> 0.028` in Family II.
+
+8. [SEVERITY: minor]  
+[STATUS: new-finding]  
+WHERE: `paper/section_replication.tex:17-18`  
+CLAIM: “Where ground truth exists the models are well calibrated (Brier 0.005).”  
+PROBLEM: A low Brier score on these labeled facts supports accuracy/low error, not calibration in the reliability sense.  
+EVIDENCE: `analyze_factual.py` reports Brier `0.0047`; no calibration curve, bins, or repeated forecast frequencies are estimated.  
+FIX: Say “low Brier error” or “assign high confidence to true items and low confidence to false items.”
+
+Earlier findings: in `paper/main.tex`, items 1, 2, 3, 5, 7, 8, and 9 are genuinely resolved; item 4’s rejection is correct for the annotation but incomplete in the caption; item 6 is only partially resolved because not all reported intervals follow the declared item-clustered unit. Across the three-version package, fixes 1, 2, and 5 are incomplete. Verdict: major revision, because the paper still misdeclares a key resampling unit and the alternate manuscripts retain corrected false claims.
+CODEX_R2_EXIT=0

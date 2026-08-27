@@ -7,9 +7,10 @@ does, on 7,920 elicitations across six frontier model families and two unrelated
 families.
 
 The first is item sampling. A rate computed on one statement is a property of that statement:
-between-item standard deviations equal or exceed the mean, so a single-item probe carries a 95%
+between-item standard deviations are of the same order as the mean and exceed it in four of the
+five constructs, so a single-item probe carries a 95%
 interval half-width of +/-0.41 on a [0,1] rate. A published figure of 0.661 obtained from one
-sentence becomes 0.223 over ten. Sizing a test bank for a +/-0.05 half-width takes 69 items in
+sentence becomes 0.222 over ten. Sizing a test bank for a +/-0.05 half-width takes 69 items in
 one family and 20 in the other, and nothing short of measuring tells you which regime you are in.
 
 The second is instruction framing, where the obvious ablation misleads. Deleting the sentence
@@ -21,6 +22,7 @@ modal value adjudicates a large share of cases by rounding: moving one cut from 
 changes a reported rate by a factor of 16 without touching the data.
 
 Replicating all three on an unrelated task shows that no magnitude transfers intact and that the
-framing effect does not replicate at all, which sharpens the rule rather than weakening it. We
+framing effect does not replicate in the mean, though it still moves the shape of the response,
+which sharpens the rule rather than weakening it. We
 state the design rule each result implies, and release both item banks, the analysis code and
 every raw generation.

@@ -14,8 +14,9 @@ answer---plus ten arithmetic anchors. Same six model families, same three wordin
 nested instruction ablations. Nothing about four-valued logic appears anywhere in it.
 
 The bank behaves. Parse failure is $0.0\%$ over $1{,}080$ elicitations, the arithmetic anchors
-return exactly $1.000$ and $0.000$, and where ground truth exists the models are well calibrated
-(Brier $0.005$). Whatever the bank measures, it is not noise.
+return exactly $1.000$ and $0.000$, and where ground truth exists the models assign high confidence to
+true items and low confidence to false ones (Brier error $0.005$; we do not estimate a
+calibration curve, so this is accuracy rather than calibration in the reliability sense). Whatever the bank measures, it is not noise.
 
 \paragraph{The outcome we chose first was the artifact.} We initially tracked a
 \emph{high-confidence rate}: the fraction of elicitations at or above $0.9$. That is the
@@ -34,7 +35,8 @@ costs.
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\linewidth]{figC_threshold}
-\caption{Second bank, $1{,}080$ elicitations. Left: reported confidence per elicitation, with the
+\caption{Second bank, the $900$ construct elicitations; the $180$ anchor elicitations are
+omitted because they carry no dispersion to show. Left: reported confidence per elicitation, with the
 item means spanned by the bar. The open-question construct occupies the middle of the scale and
 spreads across items. Right: the rate that survives binarisation, as a function of where the cut
 is placed. Moving the cut from $0.60$ to $0.90$ takes the open-question rate from $0.450$ to
@@ -67,11 +69,11 @@ rate in all three conditions.
 
 The first half replicates exactly. Deleting the licence moves the open-question construct from
 $0.551$ to $0.531$, a paired difference of $-0.020$ with a $95\%$ interval of
-$[-0.057,\,+0.013]$. That is the first corpus's result again: the sentence that names the
+$[-0.052,\,+0.009]$. That is the first corpus's result again: the sentence that names the
 measured behaviour is worth almost nothing.
 
 The second half does not replicate in the mean. Deleting the entire framing moves the same construct
-to $0.533$---a paired difference of $-0.018$, interval $[-0.052,\,+0.016]$. On the first corpus
+to $0.533$---a paired difference of $-0.018$, interval $[-0.044,\,+0.009]$. On the first corpus
 the corresponding ablation took the headline quantity from $0.077$ to $0.004$. Here it does
 nothing.
 
@@ -152,15 +154,18 @@ The size of the artifact is a factor of $16$: the open-question rate is $0.450$ 
 $0.60$, $0.089$ at $0.80$, and $0.028$ at $0.90$. None of those numbers is more correct than the
 others, and a paper reporting any one of them alone would be reporting its own threshold.
 
-\subsection{Agreement replicates, and is construct-specific}
+\subsection{The analogous quantity in the second family, and why it is not the same one}
 
 The second bank has no repetitions, so it cannot decompose rater variance the way
-Section~\ref{sec:agree} does. What it has instead is three wordings, which isolates a different
-component: how much a single model moves when the question is rephrased. That movement is $0.021$
-in mean absolute confidence, against $0.048$ between different models on the same item---a ratio
-of $0.44$, close to the $0.52$ the first corpus gives for repetition against models. Two designs,
-two different intra terms, the same conclusion: a substantial share of what gets attributed to
-model disagreement is not model disagreement.
+Section~\ref{sec:agree} does, and we do not claim it replicates that decomposition. What it has
+instead is three wordings, which isolates a different component: how much a single model moves
+when the question is rephrased. That movement is $0.021$ in mean absolute confidence, against
+$0.048$ between different models on the same item, a ratio of $0.44$. The first corpus gives
+$0.52$ for repetition against models. The two numbers are not the same quantity---one is binary
+label disagreement across reruns, the other continuous movement across wordings---and we put no
+weight on their closeness. What the two designs share is only the qualitative conclusion, that a
+substantial share of what gets attributed to model disagreement is not disagreement between
+models.
 
 The new observation is about pooling. Between-model dispersion on this bank runs from $0.001$ on
 well-known truths to $0.120$ on open questions, a factor of $120$. An agreement coefficient
@@ -178,7 +183,9 @@ depends on. Framing is worth what the model could not have inferred without it, 
 everything for an exotic construct and nearly nothing for a familiar one.
 
 What transfers, then, is the protocol and not a single magnitude. The item count moves from $69$
-to $20$; the threshold effect grows from a factor of $2$ to a factor of $16$; the framing effect
+to $20$; the threshold effect is the difference between $0.000$ and $0.778$ on a control
+condition in the first family and a factor of $16$ on the dispersed construct in the second; the
+framing effect
 falls from decisive to undetectable in the mean while remaining visible in the shape. Every one of
 those numbers would have been wrong if borrowed from the other family. That is the argument for
 measuring them rather than citing them, and it is the reason we ran a second bank instead of

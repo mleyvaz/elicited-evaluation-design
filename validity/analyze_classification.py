@@ -1,15 +1,17 @@
-"""Acuerdo entre clasificadores y contra la asignacion original del banco.
+"""Acuerdo entre clasificadores y contra la asignacion de los bancos.
 
-Produce los tres numeros que el paper necesita para responder a la objecion de validez
-de constructo:
+Dos tareas, porque las dos familias plantean preguntas de validez distintas:
 
-  1. Cohen kappa entre los dos clasificadores        -> es reproducible la asignacion?
-  2. Acuerdo de cada uno con la clave original       -> es la asignacion del autor la que
-                                                        harian otros?
-  3. Matriz de confusion por constructo              -> donde se rompe, si se rompe
+  A  familia I, seis categorias: por que es dificil de contestar este enunciado
+  B  familia II, binaria: tiene respuesta conocida o esta genuinamente abierto
+
+La B es la que mas pesa. Los resultados 2 y 3 de la replica viven enteros en el
+subconjunto abierto de la familia II, asi que si esos diez items no son de verdad
+preguntas sin respuesta, los dos efectos no se encogen: se quedan sin sitio donde
+ocurrir.
 
 Uso:  python analyze_classification.py
-      (requiere classification/rater_A.csv y rater_B.csv con la columna category llena)
+      (requiere las hojas taskX_rater_A.csv y taskX_rater_B.csv con la columna llena)
 """
 from __future__ import annotations
 
@@ -20,17 +22,20 @@ from pathlib import Path
 
 import numpy as np
 
-HERE = Path(__file__).resolve().parent
-CL = HERE / "classification"
+CL = Path(__file__).resolve().parent / "classification"
 
-CODE = {"EC": "ethical conflict", "EI": "epistemic ignorance", "VG": "vagueness",
-        "FC": "future contingency", "LP": "logical paradox", "ST": "settled truth"}
-ORDER = ["EC", "EI", "VG", "FC", "LP", "ST"]
-INV = {v: k for k, v in CODE.items()}
+TASKS = {
+    "taskA": {"name": "Familia I - seis categorias",
+              "codes": {"EC": "ethical conflict", "EI": "epistemic ignorance",
+                        "VG": "vagueness", "FC": "future contingency",
+                        "LP": "logical paradox", "ST": "settled truth"}},
+    "taskB": {"name": "Familia II - abierto o resuelto",
+              "codes": {"K": "has a known answer", "O": "genuinely open"}},
+}
 
 
-def read(rater):
-    p = CL / f"rater_{rater}.csv"
+def read(tag, rater):
+    p = CL / f"{tag}_rater_{rater}.csv"
     if not p.exists():
         return None
     out = {}
@@ -39,11 +44,10 @@ def read(rater):
             c = (row.get("category") or "").strip().upper()
             if c:
                 out[row["item"]] = c
-    return out
+    return out or None
 
 
 def kappa(a, b, cats):
-    """Cohen kappa sobre las etiquetas emparejadas."""
     n = len(a)
     po = sum(x == y for x, y in zip(a, b)) / n
     ca, cb = Counter(a), Counter(b)
@@ -51,77 +55,60 @@ def kappa(a, b, cats):
     return (po - pe) / (1 - pe) if pe < 1 else float("nan")
 
 
-def main():
-    key = json.loads((CL / "key.json").read_text(encoding="utf-8"))
-    gold = {k: INV[v["gold"]] for k, v in key.items()}
+def run(tag, spec):
+    codes = spec["codes"]
+    inv = {v: k for k, v in codes.items()}
+    order = list(codes)
 
-    A, B = read("A"), read("B")
+    kp = CL / f"{tag}_key.json"
+    if not kp.exists():
+        print(f"  {tag}: sin clave, corre build_classification_task.py")
+        return
+    key = json.loads(kp.read_text(encoding="utf-8"))
+    gold = {k: inv[v["gold"]] for k, v in key.items()}
+
+    A, B = read(tag, "A"), read(tag, "B")
     if not A or not B:
-        missing = [r for r, d in (("A", A), ("B", B)) if not d]
-        print(f"faltan hojas rellenas: rater_{', rater_'.join(missing)}")
-        print("El instrumento esta listo; esto se corre cuando vuelvan.")
+        miss = [r for r, d in (("A", A), ("B", B)) if not d]
+        print(f"  {spec['name']}: faltan hojas rellenas ({', '.join(miss)}). "
+              f"El instrumento esta listo; esto se corre cuando vuelvan.")
         return
 
     common = [k for k in key if k in A and k in B]
-    bad = {r: [c for c in d.values() if c not in CODE] for r, d in (("A", A), ("B", B))}
-    for r, b in bad.items():
-        if b:
-            print(f"  AVISO rater {r}: codigos no validos {sorted(set(b))}")
-
-    print("=" * 66)
-    print(f"VALIDEZ DE CONSTRUCTO — {len(common)}/{len(key)} items clasificados por ambos")
-    print("=" * 66)
-
     la = [A[k] for k in common]
     lb = [B[k] for k in common]
     lg = [gold[k] for k in common]
 
-    print(f"\n1. ACUERDO ENTRE CLASIFICADORES")
-    print(f"   acuerdo simple      {np.mean([x == y for x, y in zip(la, lb)]):.3f}")
-    print(f"   Cohen kappa         {kappa(la, lb, ORDER):.3f}")
+    print(f"--- {spec['name']} — {len(common)}/{len(key)} items ---")
+    print(f"  entre clasificadores : acuerdo {np.mean([x == y for x, y in zip(la, lb)]):.3f}"
+          f"   kappa {kappa(la, lb, order):.3f}")
+    for lab, l in (("A vs banco", la), ("B vs banco", lb)):
+        print(f"  {lab:<20} : acuerdo {np.mean([x == y for x, y in zip(l, lg)]):.3f}"
+              f"   kappa {kappa(l, lg, order):.3f}")
 
-    print(f"\n2. ACUERDO CON LA ASIGNACION DEL BANCO")
-    for lab, l in (("clasificador A", la), ("clasificador B", lb)):
-        print(f"   {lab}: acuerdo {np.mean([x == y for x, y in zip(l, lg)]):.3f}   "
-              f"kappa {kappa(l, lg, ORDER):.3f}")
-    both = [k for k in common if A[k] == B[k]]
-    if both:
-        agree_gold = np.mean([A[k] == gold[k] for k in both])
-        print(f"   donde A y B coinciden ({len(both)} items): "
-              f"acuerdo con el banco {agree_gold:.3f}")
-
-    print(f"\n3. POR CONSTRUCTO (recuperacion de la asignacion del banco)")
-    print(f"   {'constructo':<22}{'n':>4}{'A':>8}{'B':>8}{'A=B':>8}")
-    for c in ORDER:
+    print(f"  por categoria (recuperacion de la asignacion del banco):")
+    for c in order:
         ks = [k for k in common if gold[k] == c]
         if not ks:
             continue
-        print(f"   {CODE[c]:<22}{len(ks):>4}"
-              f"{np.mean([A[k] == c for k in ks]):>8.2f}"
-              f"{np.mean([B[k] == c for k in ks]):>8.2f}"
-              f"{np.mean([A[k] == B[k] for k in ks]):>8.2f}")
+        print(f"    {codes[c]:<22}{len(ks):>4}"
+              f"   A {np.mean([A[k] == c for k in ks]):.2f}"
+              f"   B {np.mean([B[k] == c for k in ks]):.2f}")
 
-    print(f"\n4. CONFUSIONES MAS FRECUENTES (banco -> clasificador)")
-    conf = Counter()
-    for k in common:
-        for l in (A[k], B[k]):
-            if l != gold[k]:
-                conf[(gold[k], l)] += 1
-    for (g, l), n in conf.most_common(6):
-        print(f"   {CODE[g]:<22} -> {CODE.get(l, l):<22} {n}")
-
-    print(f"\n5. ITEMS QUE NADIE COLOCA DONDE EL BANCO DICE")
     off = [k for k in common if A[k] != gold[k] and B[k] != gold[k]]
-    print(f"   {len(off)} de {len(common)}")
+    print(f"  items que ninguno coloca donde el banco dice: {len(off)}")
     for k in off:
-        print(f"   {k} [{key[k]['orig_id']}] banco={CODE[gold[k]]:<20} "
-              f"A={CODE.get(A[k], A[k])}  B={CODE.get(B[k], B[k])}")
+        print(f"    {k} [{key[k]['orig_id']}] banco={codes[gold[k]]}"
+              f"  A={codes.get(A[k], A[k])}  B={codes.get(B[k], B[k])}")
+    print()
 
-    print(f"\n--- para el paper ---")
-    print(f"Two raters classified the {len(common)} unmarked items and anchors into the five")
-    print(f"constructs, blind to the bank's assignment and to each other. They agreed with each")
-    print(f"other at kappa = {kappa(la, lb, ORDER):.3f} and reproduced the bank's assignment at")
-    print(f"kappa = {kappa(la, lg, ORDER):.3f} and {kappa(lb, lg, ORDER):.3f}.")
+
+def main():
+    print("=" * 70)
+    print("VALIDEZ DE CONSTRUCTO")
+    print("=" * 70)
+    for tag, spec in TASKS.items():
+        run(tag, spec)
 
 
 if __name__ == "__main__":
