@@ -45,10 +45,14 @@ Consider an evaluation of the following kind. You have a construct---hallucinati
 value conflict, ambiguity, harmfulness---and you want to know how often a model exhibits some
 response to it. You write one or a few statements that instantiate the construct, you ask the
 model a question about each, you record a number, and you report the rate. Variants of this
-design are everywhere: verbalized confidence, self-reported uncertainty, LLM-as-judge scoring,
-self-critique, constitutional-style self-evaluation, and most bespoke probes built for a paper.
+design are everywhere: verbalized confidence \citep{lin2022teaching}, self-reported
+uncertainty, LLM-as-judge scoring \citep{zheng2023judging}, self-critique,
+constitutional-style self-evaluation, and most bespoke probes built for a paper.
 
-The design has three failure modes that are individually well known and jointly under-measured.
+That the resulting numbers are treated as measurements without the apparatus measurement
+usually requires is a concern raised both inside NLP \citep{bowmandahl2021} and from
+measurement theory \citep{jacobs2021measurement}. The design has three failure modes that
+are individually well known and jointly under-measured.
 The items may not represent the construct. The instruction may produce the behaviour it
 measures. And the decision rule may sit where the model's answers pile up. This paper measures
 all three on one corpus, so that the three magnitudes can be compared against each other rather
@@ -78,13 +82,14 @@ the second construct family, which is new data collected for this paper and appe
 companion. Where a number is reported in a companion paper we say so.
 
 \paragraph{What is not new.} That elicitation format moves elicited confidence is established
-\citep{protocolsens2026}, and the unreliability of LLM judges is by now a standard caveat
-\citep{coinflip2026}; that few-item test sets are imprecise is older than either
-\citep{cronbach1972}. This paper continues that line rather than opening one. What it adds is
-the size of the three effects measured together on a common corpus, the fact that the second
-defeats the natural ablation, the conversion of the first into a number of items, and a
-replication on an unrelated construct family that shows which magnitudes
-transfer---none of them---and why.
+\citep{protocolsens2026}, as is the unreliability of LLM judges \citep{coinflip2026}; that
+prompt formatting alone moves accuracy by many points \citep{sclar2024quantifying}; that
+few-item instruments are imprecise is elementary psychometrics \citep{cronbach1972}; and that evaluation results deserve intervals is argued directly for
+language models by \citet{miller2024errorbars}. This paper continues that line rather
+than opening one. What it adds is the size of the three effects measured together on a common
+corpus, the fact that the second defeats the natural ablation, the conversion of the first
+into a number of items, and a replication on an unrelated construct family that shows which
+magnitudes transfer---none of them---and why.
 
 \section{Corpus}
 \label{sec:corpus}
@@ -142,6 +147,9 @@ construct.}
 \label{fig:items}
 \end{figure}
 
+That items differ in how much they tell you is the premise of the item-response work applied
+to NLP leaderboards and test sets \citep{rodriguez2021evaluation, vania2021comparing};
+what we add is the consequence for a rate reported over a handful of them.
 Figure~\ref{fig:items} shows the rate for every item separately. The pattern is the finding:
 \emph{the spread between items of the same construct is as large as the effect}.
 
@@ -281,6 +289,9 @@ large share of cases by rounding. In our corpus the rule is a strict inequality 
 and the quantity equals exactly $1.00$ in $37.9\%$ of evaluations---the modal value.
 Figure~\ref{fig:grid} shows the pile-up sitting on the boundary.
 
+That cutting a continuous quantity into two classes discards information and can mislead is a
+long-standing result in psychological methods \citep{maccallum2002}; what is specific here
+is that the cut point coincides with the value models return most often.
 The consequence is not subtle. Replacing the strict comparison with a non-strict one---a change
 no larger than the resolution at which models answer---moves the rate on the anchor condition,
 which is the study's control, from $0.000$ to $0.778$. A result that had read as ``the signature
@@ -297,7 +308,7 @@ $1$---or use a margin, or report the underlying quantity instead of the label.
 \section{A fourth, briefly: agreement across model families}
 \label{sec:agree}
 
-One further quantity is worth separating because it is routinely misread. Studies that use
+One further quantity is worth separating because it is routinely misread \citep{cohen1960, shroutfleiss1979}. Studies that use
 several models as raters report an agreement coefficient over their labels. With one generation
 per cell at a non-zero temperature, such a coefficient cannot distinguish models disagreeing
 from a single model answering differently on a rerun.
@@ -337,8 +348,10 @@ quantity is a property of text produced under an instruction.
 
 \paragraph{The construct labels are ours, and the results do not rest on them.} We wrote the
 items and we assigned them to constructs, so a reader is entitled to ask who says that these ten
-statements measure ethical conflict rather than something else. The honest answer is that we do,
-and that the assignment has not been validated against independent judges. What we can say is
+statements measure ethical conflict rather than something else. That question is the classical
+one of construct validity \citep{cronbachmeehl1955, messick1995}, and it arrives here in
+the form measurement theory gives it for computational systems \citep{jacobs2021measurement}. The honest answer is that we do, and that the assignment has not
+been validated against independent judges. What we can say is
 that the three results are invariant to whether the labels are right. The first is a statement
 about dispersion \emph{within} a labelled group, and a group wrongly named still has the
 dispersion we report. The second and third are manipulations of the instrument---an instruction

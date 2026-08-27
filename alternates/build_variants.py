@@ -28,9 +28,11 @@ TITLE_OLD = (B + "title{Three Ways an Elicited Evaluation Measures Its Own Desig
              "with a worked case and 7{,}920 elicitations}")
 
 # el parrafo que ancla la contribucion en psicometria; cambia de anclaje por publico
-NOTNEW_OLD = """\\paragraph{What is not new.} That elicitation format moves elicited confidence is established
-\\citep{protocolsens2026}, as is the unreliability of LLM judges \\citep{coinflip2026}; that
-few-item instruments are imprecise is elementary psychometrics \\citep{cronbach1972}. What we
+NOTNEW_OLD = """\paragraph{What is not new.} That elicitation format moves elicited confidence is established
+\citep{protocolsens2026}, as is the unreliability of LLM judges \citep{coinflip2026}; that
+prompt formatting alone moves accuracy by many points \citep{sclar2024quantifying}; that
+few-item instruments are imprecise is elementary psychometrics \citep{cronbach1972}; and that evaluation results deserve intervals is argued directly for
+language models by \citet{miller2024errorbars}. What we
 add is the size of each effect measured on a common corpus, the fact that the second one
 defeats the natural ablation, the conversion of the first into a number of items, and a
 replication on an unrelated construct family that shows which of the three magnitudes
@@ -43,26 +45,29 @@ VARIANTS = {
                   "in {LLM}-based evaluation}"),
         "abstract": HERE / "abstract_IPM.txt",
         "notnew": """\\paragraph{What is not new.} That elicitation format moves elicited confidence is established
-\\citep{protocolsens2026}, as is the unreliability of LLM judges \\citep{coinflip2026}; that a
-test set of a few items estimates those items rather than the construct behind them is older
-still \\citep{cronbach1972}. What we add is the size of each effect measured on a common corpus,
-the fact that the second one defeats the natural ablation, the conversion of the first into a
-bank size, and a replication on an unrelated construct family that shows which of the three
-magnitudes transfer---none of them---and why. The audience we have in mind is whoever has to
-size, instruct and threshold an evaluation pipeline before running it.""",
+\\citep{protocolsens2026}, as is the unreliability of LLM judges \\citep{coinflip2026}; that
+prompt formatting alone moves accuracy by many points \\citep{sclar2024quantifying}; that
+few-item instruments are imprecise is elementary psychometrics \\citep{cronbach1972}; and that evaluation results deserve intervals is argued directly for
+language models by \\citet{miller2024errorbars}. What we add is the size of each
+effect measured on a common corpus, the fact that the second one defeats the natural
+ablation, the conversion of the first into a bank size, and a replication on an unrelated
+construct family that shows which of the three magnitudes transfer---none of them---and why.
+The audience we have in mind is whoever has to size, instruct and threshold an evaluation
+pipeline before running it.""",
     },
     "nlp": {
         "title": (B + "title{How Much of an Elicited Evaluation Is the Protocol?" + B + B + "\n"
                   + B + "large Three measured artifacts and the design rules they imply}"),
         "abstract": HERE / "abstract_NLP_Cambridge.txt",
         "notnew": """\\paragraph{What is not new.} That elicitation format moves elicited confidence is established
-\\citep{protocolsens2026}, and the unreliability of LLM judges is by now a standard caveat
-\\citep{coinflip2026}; that few-item test sets are imprecise is older than either
-\\citep{cronbach1972}. This paper continues that line rather than opening one. What it adds is
-the size of the three effects measured together on a common corpus, the fact that the second
-defeats the natural ablation, the conversion of the first into a number of items, and a
-replication on an unrelated construct family that shows which magnitudes
-transfer---none of them---and why.""",
+\\citep{protocolsens2026}, as is the unreliability of LLM judges \\citep{coinflip2026}; that
+prompt formatting alone moves accuracy by many points \\citep{sclar2024quantifying}; that
+few-item instruments are imprecise is elementary psychometrics \\citep{cronbach1972}; and that evaluation results deserve intervals is argued directly for
+language models by \\citet{miller2024errorbars}. This paper continues that line rather
+than opening one. What it adds is the size of the three effects measured together on a common
+corpus, the fact that the second defeats the natural ablation, the conversion of the first
+into a number of items, and a replication on an unrelated construct family that shows which
+magnitudes transfer---none of them---and why.""",
     },
 }
 
