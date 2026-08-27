@@ -325,11 +325,14 @@ several models as raters report an agreement coefficient over their labels. With
 per cell at a non-zero temperature, such a coefficient cannot distinguish models disagreeing
 from a single model answering differently on a rerun.
 
-Our corpus contains a design that separates them, because the pilot has ten repetitions. Within
-a single model, two repetitions of the same item under the same wording land on different
-labels $17.5\%$ of the time; two different models disagree $33.4\%$ of the time. Roughly half of
-the disagreement attributed to raters is stochastic variation a single rater produces on its
-own. The pooled coefficient over the bank, $\kappa = 0.184$ \citep{fleiss1971}, should be read
+Our corpus contains a design that separates them, because the pilot has ten repetitions. Over
+the five contested statements, two repetitions of the same item by the same model under the same
+wording land on different labels $17.5\%$ of the time ($n = 4{,}032$ pairs); two different models
+answering the same item, wording and repetition disagree $32.8\%$ of the time ($n = 2{,}240$
+pairs). Roughly half of the disagreement attributed to raters is stochastic variation a single
+rater produces on its own. Both rates exclude the three tautological controls, where the label
+is almost never in dispute and including them halves both figures without changing their
+ratio. The pooled coefficient over the bank, $\kappa = 0.184$ \citep{fleiss1971}, should be read
 as a bound on reproducibility rather than as a measure of inter-model disagreement.
 
 \paragraph{Design rule.} Either include repetitions and decompose, or report the coefficient as
