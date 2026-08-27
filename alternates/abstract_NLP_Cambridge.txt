@@ -1,0 +1,26 @@
+Prompt sensitivity in elicited model judgments is well documented, and the unreliability of
+LLM-as-a-judge scoring is by now a standard caveat. What is missing is the size of these effects
+measured together, on one corpus, against the decisions an evaluation designer actually makes.
+We report three such magnitudes over 7,920 elicitations across six frontier model families, and
+then measure them again on a second, unrelated construct family.
+
+Threshold placement first, because it is the largest and the least discussed. Models answer on a
+coarse numeric grid — 46 distinct values across 7,852 elicited components, 89.5% of them
+multiples of 0.1 — so a decision rule compared against a fixed constant adjudicates a large
+share of cases by rounding. In our worked case the cut sits exactly on the modal value: moving
+from a strict to a non-strict comparison moves a control condition from 0.000 to 0.778, and on
+the second family moving one cut from 0.60 to 0.90 changes a reported rate by a factor of 16
+without touching the data.
+
+Instruction framing second, where the natural ablation gives the wrong answer. Deleting the
+sentence that names the measured behaviour barely moves the result; deleting the surrounding
+framing removes it. Running only the first half exonerates the prompt. On the second family the
+framing effect does not replicate at all, and the reason generalises: framing is worth what the
+model could not have inferred without it.
+
+Item sampling third. Between-item standard deviations equal or exceed the mean, so a single-item
+probe carries a 95% interval half-width of +/-0.41; reaching +/-0.05 takes 69 items in one
+family and 20 in the other.
+
+No magnitude transfers between the two families. We give the design rule each result implies,
+and release both banks, the code and every generation.
