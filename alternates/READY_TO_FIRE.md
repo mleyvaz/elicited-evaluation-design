@@ -54,8 +54,11 @@ Design Rules They Imply
 
 **Qué cambia**
 
-- Se lidera con el resultado del umbral y con el de la instrucción, que son los que esa
-  comunidad reconoce como suyos; el muestreo de ítems pasa a segundo lugar.
+- **El abstract** lidera con el umbral y la instrucción, que son los que esa comunidad reconoce
+  como suyos, y deja el muestreo de ítems en tercer lugar. **El cuerpo NO está reordenado**: sus
+  secciones siguen en el orden de la versión BRM. Reordenarlas exige reescribir las transiciones
+  y las referencias cruzadas, y es una decisión que conviene tomar viendo si el revisor lo pide,
+  no antes.
 - Se cita explícitamente el trabajo de sensibilidad al protocolo y el de fiabilidad de jueces
   como el hilo que este paper continúa.
 - El vocabulario psicométrico (*between-item variance*, *construct validity*) se traduce a
